@@ -1,7 +1,6 @@
-﻿using UnityEngine;
-using Zenject;
+﻿using Zenject;
 
-namespace States
+namespace Signals
 {
     public class MovePlayerSignal : Signal<MovePlayerSignal, float>
     {

@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using Signals;
 using UnityEngine;
 using Zenject;
 
@@ -8,18 +9,32 @@ namespace States
     {
         private readonly MovePlayerSignal _movePlayerSignal;
         private IGameState _gameStateImplementation;
+        private IGameContext _gameContext;
+        private StateFactory _stateFactory;
 
-        public PlayingState(MovePlayerSignal movePlayerSignal)
+        public PlayingState(StateFactory stateFactory, MovePlayerSignal movePlayerSignal, GameEndedSignal gameEndedSignal)
         {
+            _stateFactory = stateFactory;
             _movePlayerSignal = movePlayerSignal;
+            gameEndedSignal += OnGameEnded;
         }
 
-        public void Tick(IGameContext gameContext)
+        private void OnGameEnded()
+        {
+             _gameContext.CurrentState = _stateFactory.CreateGameOverState(_gameContext);
+        }
+
+        public void SetContext(IGameContext context)
+        {
+            _gameContext = context;
+        }
+
+        public void Tick()
         {
             // do nothing
         }
 
-        public void FixedTick(IGameContext gameContext)
+        public void FixedTick()
         {
             var moveHorizontal = Input.GetAxis("Horizontal");
             _movePlayerSignal.Fire(moveHorizontal);

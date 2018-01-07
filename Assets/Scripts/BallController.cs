@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Signals;
 using States;
 using UnityEngine;
 using Zenject;
@@ -13,11 +14,11 @@ public class BallController : MonoBehaviour
 	public void Construct(Settings settings, MoveBallSignal moveBallSignal, LaunchBallSignal launchBallSignal)
 	{
 		_settings = settings;
-		moveBallSignal += SetVelocity;
+		moveBallSignal += MoveBall;
 		launchBallSignal += LaunchBall;
 	}
-	
-	private void SetVelocity(Vector3 velocity)
+
+	private void MoveBall(Vector3 velocity)
 	{
 		GetComponent<Rigidbody>().velocity = velocity;
 	}

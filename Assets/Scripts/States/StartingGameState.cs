@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Signals;
+using UnityEngine;
 using Zenject;
 
 namespace States
@@ -12,6 +13,7 @@ namespace States
         private readonly PlayerController.Settings _playerSettings;
 
         private readonly int _startingBallSpeed;
+        private IGameContext _gameContext;
 
         public StartingGameState(
             StateFactory stateFactory,
@@ -27,16 +29,21 @@ namespace States
             _launchBallSignal = launchBallSignal;
         }
 
-        public void Tick(IGameContext gameContext)
+        public void SetContext(IGameContext context)
+        {
+            _gameContext = context;
+        }
+
+        public void Tick()
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                _launchBallSignal.Fire(new Vector3(Random.Range(5, 20), 0, Random.Range(5, 20)));
-                gameContext.CurrentState = _stateFactory.CreatePlayingState();
+                _launchBallSignal.Fire(new Vector3(Random.Range(-20, 20), 0, Random.Range(5, 20)));
+                _gameContext.CurrentState = _stateFactory.CreatePlayingState(_gameContext);
             }
         }
 
-        public void FixedTick(IGameContext gameContext)
+        public void FixedTick()
         {
             var moveHorizontal = Input.GetAxis("Horizontal");
             _movePlayerSignal.Fire(moveHorizontal);

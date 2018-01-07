@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Zenject;
 
-namespace States
+namespace Signals
 {
     public class LaunchBallSignal : Signal<LaunchBallSignal, Vector3>
     {

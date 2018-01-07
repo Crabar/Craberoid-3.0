@@ -1,6 +1,9 @@
 ﻿using States;
 using Zenject;
 
-public class GameStateChangedSignal : Signal<GameStateChangedSignal, IGameState>
+namespace Signals
 {
+    public class GameStateChangedSignal : Signal<GameStateChangedSignal, IGameState>
+    {
+    }
 }

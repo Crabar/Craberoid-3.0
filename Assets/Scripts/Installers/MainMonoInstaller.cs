@@ -1,3 +1,4 @@
+using Signals;
 using States;
 using UnityEngine;
 using Zenject;
@@ -12,9 +13,11 @@ public class MainMonoInstaller : MonoInstaller<MainMonoInstaller>
         Container.DeclareSignal<LaunchBallSignal>();
         Container.DeclareSignal<GameStateChangedSignal>();
         Container.DeclareSignal<MovePlayerSignal>();
+        Container.DeclareSignal<GameEndedSignal>();
         // factories
         Container.Bind<StateFactory>().AsSingle();
         Container.BindFactory<StartingGameState, StartingGameState.Factory>();
         Container.BindFactory<PlayingState, PlayingState.Factory>();
+        Container.BindFactory<GameOverState, GameOverState.Factory>();
     }
 }

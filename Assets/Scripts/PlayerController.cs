@@ -1,4 +1,5 @@
 ﻿using System;
+using Signals;
 using States;
 using UnityEngine;
 using Zenject;
@@ -17,7 +18,8 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer(float horizontalOffset)
     {
-        GetComponent<Rigidbody>().velocity = new Vector3(horizontalOffset * _settings.playerSpeed, 0, 0);
+        var rb = GetComponent<Rigidbody>();
+        rb.velocity = new Vector3(horizontalOffset * _settings.playerSpeed, 0, 0);
     }
 
     [Serializable]

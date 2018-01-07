@@ -2,7 +2,9 @@
 {
     public interface IGameState
     {
-        void Tick(IGameContext gameContext);
-        void FixedTick(IGameContext gameContext);
+        void SetContext(IGameContext context);
+        void Tick();
+        void FixedTick();
     }
 }
+

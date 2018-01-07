@@ -1,8 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
 
-public class MoveBallSignal : Signal<MoveBallSignal, Vector3>
+namespace Signals
 {
+    public class MoveBallSignal : Signal<MoveBallSignal, Vector3>
+    {
+    }
 }
