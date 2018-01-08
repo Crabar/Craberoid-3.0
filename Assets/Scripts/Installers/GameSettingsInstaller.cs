@@ -6,10 +6,12 @@ public class GameSettingsInstaller : ScriptableObjectInstaller<GameSettingsInsta
 {
     public PlayerController.Settings Player;
     public BallController.Settings Ball;
+    public BrickController.Settings Brick;
 
     public override void InstallBindings()
     {
         Container.BindInstance(Player);
         Container.BindInstance(Ball);
+        Container.BindInstance(Brick);
     }
 }
