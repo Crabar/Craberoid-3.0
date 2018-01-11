@@ -1,4 +1,5 @@
-﻿using Signals;
+﻿using LevelGenerators;
+using Signals;
 using UnityEngine;
 using Zenject;
 
@@ -11,6 +12,7 @@ namespace States
         private readonly StateFactory _stateFactory;
         private readonly MovePlayerSignal _movePlayerSignal;
         private readonly PlayerController.Settings _playerSettings;
+        private readonly LevelManager _levelManager;
 
         private readonly int _startingBallSpeed;
         private IGameContext _gameContext;
@@ -20,13 +22,17 @@ namespace States
             MoveBallSignal moveBallSignal,
             MovePlayerSignal movePlayerSignal,
             PlayerController.Settings playerSettings,
-            LaunchBallSignal launchBallSignal)
+            LaunchBallSignal launchBallSignal,
+            LevelManager levelManager)
         {
             _stateFactory = stateFactory;
             _moveBallSignal = moveBallSignal;
             _movePlayerSignal = movePlayerSignal;
             _playerSettings = playerSettings;
             _launchBallSignal = launchBallSignal;
+            _levelManager = levelManager;
+
+            _levelManager.GetNextLevelGenerator().GenerateLevel();
         }
 
         public void SetContext(IGameContext context)

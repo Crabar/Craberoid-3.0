@@ -16,8 +16,11 @@ MonoBehaviour:
   Ball:
     ballSpeed: 20
   Brick:
-    BrickPrefab: {fileID: 0}
+    BrickPrefab: {fileID: 1072183195368714, guid: a63ca9809013349039a4327f58ccea56,
+      type: 2}
     Materials:
     - {fileID: 2100000, guid: 73384d3fc83e14f2ba1ac27d599047ce, type: 2}
     - {fileID: 2100000, guid: a5ef497de21144ea5bb1874bd2609593, type: 2}
     GainedScore: 10
+  LevelManager:
+    Levels: 00000000

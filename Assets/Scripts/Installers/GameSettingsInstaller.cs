@@ -1,3 +1,4 @@
+using LevelGenerators;
 using UnityEngine;
 using Zenject;
 
@@ -7,11 +8,13 @@ public class GameSettingsInstaller : ScriptableObjectInstaller<GameSettingsInsta
     public PlayerController.Settings Player;
     public BallController.Settings Ball;
     public BrickController.Settings Brick;
+    public LevelManager.Settings LevelManager;
 
     public override void InstallBindings()
     {
         Container.BindInstance(Player);
         Container.BindInstance(Ball);
         Container.BindInstance(Brick);
+        Container.BindInstance(LevelManager);
     }
 }
