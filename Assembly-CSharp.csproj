@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\LevelGenerators\LevelGeneratorFactory.cs" />
     <Compile Include="Assets\Scripts\LevelGenerators\LevelManager.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\ScoreTextController.cs" />
     <Compile Include="Assets\Scripts\Signals\GameEndedSignal.cs" />
     <Compile Include="Assets\Scripts\Signals\GameStateChangedSignal.cs" />
     <Compile Include="Assets\Scripts\Signals\GiveScorepointsSignal.cs" />
