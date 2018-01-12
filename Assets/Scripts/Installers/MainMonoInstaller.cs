@@ -18,6 +18,7 @@ public class MainMonoInstaller : MonoInstaller<MainMonoInstaller>
         Container.DeclareSignal<MovePlayerSignal>();
         Container.DeclareSignal<GameEndedSignal>();
         Container.DeclareSignal<GiveScorepointsSignal>();
+        Container.DeclareSignal<AttachToPlayerSignal>();
         // factories
         Container.Bind<StateFactory>().AsSingle();
         Container.BindFactory<StartingGameState, StartingGameState.Factory>();

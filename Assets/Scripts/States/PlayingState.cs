@@ -10,13 +10,14 @@ namespace States
         private readonly MovePlayerSignal _movePlayerSignal;
         private IGameState _gameStateImplementation;
         private IGameContext _gameContext;
-        private StateFactory _stateFactory;
+        private readonly StateFactory _stateFactory;
 
-        public PlayingState(StateFactory stateFactory, MovePlayerSignal movePlayerSignal, GameEndedSignal gameEndedSignal)
+        public PlayingState(StateFactory stateFactory, MovePlayerSignal movePlayerSignal, GameEndedSignal gameEndedSignal, AttachToPlayerSignal attachToPlayerSignal)
         {
             _stateFactory = stateFactory;
             _movePlayerSignal = movePlayerSignal;
             gameEndedSignal += OnGameEnded;
+            attachToPlayerSignal.Fire(false);
         }
 
         private void OnGameEnded()

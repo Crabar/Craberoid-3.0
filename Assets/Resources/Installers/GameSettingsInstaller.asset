@@ -15,6 +15,7 @@ MonoBehaviour:
     playerSpeed: 30
   Ball:
     ballSpeed: 20
+    player: {fileID: 1907149378013544, guid: fb330a7e51c201549a74f0e93d7ffec4, type: 2}
   Brick:
     BrickPrefab: {fileID: 1072183195368714, guid: a63ca9809013349039a4327f58ccea56,
       type: 2}

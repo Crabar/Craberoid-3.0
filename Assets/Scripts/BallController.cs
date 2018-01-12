@@ -8,30 +8,32 @@ using Zenject;
 
 public class BallController : MonoBehaviour
 {
-	private Settings _settings;
+    private Settings _settings;
 
-	[Inject]
-	public void Construct(Settings settings, MoveBallSignal moveBallSignal, LaunchBallSignal launchBallSignal)
-	{
-		_settings = settings;
-		moveBallSignal += MoveBall;
-		launchBallSignal += LaunchBall;
-	}
+    [Inject(Id = "PlayerTransform")] public Transform PlayerTransform;
 
-	private void MoveBall(Vector3 velocity)
-	{
-		GetComponent<Rigidbody>().velocity = velocity;
-	}
+    [Inject]
+    public void Construct(Settings settings, LaunchBallSignal launchBallSignal, AttachToPlayerSignal attachToPlayerSignal)
+    {
+        _settings = settings;
+        launchBallSignal += LaunchBall;
+        attachToPlayerSignal += AttachToPlayer;
+    }
 
-	private void LaunchBall(Vector3 velocity)
-	{
-		var newBallSpeed = velocity.normalized * _settings.ballSpeed;
-		GetComponent<Rigidbody>().velocity = newBallSpeed;
-	}
+    private void AttachToPlayer(bool needToAttach)
+    {
+        transform.SetParent(needToAttach ? PlayerTransform : null);
+    }
 
-	[Serializable]
-	public class Settings
-	{
-		public int ballSpeed = 10;
-	}
+    private void LaunchBall(Vector3 velocity)
+    {
+        var newBallSpeed = velocity.normalized * _settings.ballSpeed;
+        GetComponent<Rigidbody>().velocity = newBallSpeed;
+    }
+
+    [Serializable]
+    public class Settings
+    {
+        public int ballSpeed = 10;
+    }
 }

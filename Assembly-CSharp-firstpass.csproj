@@ -386,17 +386,17 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
+    <Reference Include="TextMeshPro-2017.2-1.0.56-Editor">
+      <HintPath>D:/_PROGRAMMING/Unity/Craberoid 3.0/Assets/TextMesh Pro/Plugins/Editor DLL/TextMeshPro-2017.2-1.0.56-Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="TextMeshPro-2017.2-1.0.56-Runtime">
+      <HintPath>D:/_PROGRAMMING/Unity/Craberoid 3.0/Assets/TextMesh Pro/Plugins/Editor DLL/TextMeshPro-2017.2-1.0.56-Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/ypoliakov/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.analytics@1.0.1/UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Purchasing">
       <HintPath>C:/Users/ypoliakov/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.purchasing@1.0.1/UnityEngine.Purchasing.dll</HintPath>
-    </Reference>
-    <Reference Include="TextMeshPro-2017.2-1.0.56-Runtime">
-      <HintPath>D:/_PROGRAMMING/Unity/Craberoid 3.0/Assets/TextMesh Pro/Plugins/Editor DLL/TextMeshPro-2017.2-1.0.56-Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="TextMeshPro-2017.2-1.0.56-Editor">
-      <HintPath>D:/_PROGRAMMING/Unity/Craberoid 3.0/Assets/TextMesh Pro/Plugins/Editor DLL/TextMeshPro-2017.2-1.0.56-Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

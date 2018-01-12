@@ -5,7 +5,7 @@ using States;
 using UnityEngine;
 using Zenject;
 
-public class GameController : ITickable, IFixedTickable, IGameContext
+public class GameController : ITickable, IFixedTickable, IGameContext, IInitializable
 {
     private IGameState _currentState;
 
@@ -19,11 +19,12 @@ public class GameController : ITickable, IFixedTickable, IGameContext
     }
 
     private readonly GameStateChangedSignal _gameStateChangedSignal;
+    private readonly StateFactory _stateFactory;
 
     public GameController(GameStateChangedSignal gameStateChangedSignal, StateFactory stateFactory)
     {
         _gameStateChangedSignal = gameStateChangedSignal;
-        CurrentState = stateFactory.CreateStartingGameState(this);
+        _stateFactory = stateFactory;
     }
 
     public void Tick()
@@ -34,5 +35,10 @@ public class GameController : ITickable, IFixedTickable, IGameContext
     public void FixedTick()
     {
         _currentState.FixedTick();
+    }
+
+    public void Initialize()
+    {
+        CurrentState = _stateFactory.CreateStartingGameState(this);
     }
 }
