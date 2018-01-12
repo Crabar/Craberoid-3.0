@@ -20,21 +20,30 @@ public class GameController : ITickable, IFixedTickable, IGameContext, IInitiali
 
     private readonly GameStateChangedSignal _gameStateChangedSignal;
     private readonly StateFactory _stateFactory;
+    private readonly WinTextController _winText;
 
-    public GameController(GameStateChangedSignal gameStateChangedSignal, StateFactory stateFactory)
+    public GameController(GameStateChangedSignal gameStateChangedSignal, StateFactory stateFactory, PlayerWinsSignal playerWinsSignal, WinTextController winText)
     {
         _gameStateChangedSignal = gameStateChangedSignal;
         _stateFactory = stateFactory;
+        _winText = winText;
+
+        playerWinsSignal += OnPlayerWins;
+    }
+
+    private void OnPlayerWins()
+    {
+        _winText.GetComponent<Animator>().Play("WinTextAnimation");
     }
 
     public void Tick()
     {
-        _currentState.Tick();
+        _currentState?.Tick();
     }
 
     public void FixedTick()
     {
-        _currentState.FixedTick();
+        _currentState?.FixedTick();
     }
 
     public void Initialize()

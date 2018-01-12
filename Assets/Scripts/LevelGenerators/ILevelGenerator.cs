@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface ILevelGenerator
 {
-    void GenerateLevel();
+    IList<BrickController> GenerateLevel();
 }

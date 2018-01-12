@@ -7,11 +7,13 @@ using Zenject;
 
 public class BrickController : MonoBehaviour
 {
-    private Dictionary<int, Material> _hpToMaterials = new Dictionary<int, Material>();
+    private readonly Dictionary<int, Material> _hpToMaterials = new Dictionary<int, Material>();
     private int _currentHp = 2;
 
     private Settings _settings;
     private GiveScorepointsSignal _giveScorepointsSignal;
+
+    public event Action<BrickController> BrickDestoyed;
 
     [Inject]
     public void Construct(Settings settings, GiveScorepointsSignal giveScorepointsSignal)
@@ -23,6 +25,11 @@ public class BrickController : MonoBehaviour
         _hpToMaterials.Add(1, settings.Materials[0]);
 
         GetComponent<Renderer>().material = _hpToMaterials[_currentHp];
+    }
+
+    private void OnDestroy()
+    {
+        BrickDestoyed?.Invoke(this);
     }
 
     private void OnCollisionEnter(Collision collision)

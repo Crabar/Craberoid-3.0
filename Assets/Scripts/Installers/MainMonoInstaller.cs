@@ -12,13 +12,14 @@ public class MainMonoInstaller : MonoInstaller<MainMonoInstaller>
     {
         Container.BindInterfacesAndSelfTo<GameController>().AsSingle();
         // signals
-        Container.DeclareSignal<MoveBallSignal>();
         Container.DeclareSignal<LaunchBallSignal>();
         Container.DeclareSignal<GameStateChangedSignal>();
         Container.DeclareSignal<MovePlayerSignal>();
         Container.DeclareSignal<GameEndedSignal>();
         Container.DeclareSignal<GiveScorepointsSignal>();
         Container.DeclareSignal<AttachToPlayerSignal>();
+        Container.DeclareSignal<LevelCompletedSignal>();
+        Container.DeclareSignal<PlayerWinsSignal>();
         // factories
         Container.Bind<StateFactory>().AsSingle();
         Container.BindFactory<StartingGameState, StartingGameState.Factory>();

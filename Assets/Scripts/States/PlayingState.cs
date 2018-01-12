@@ -12,17 +12,28 @@ namespace States
         private IGameContext _gameContext;
         private readonly StateFactory _stateFactory;
 
-        public PlayingState(StateFactory stateFactory, MovePlayerSignal movePlayerSignal, GameEndedSignal gameEndedSignal, AttachToPlayerSignal attachToPlayerSignal)
+        public PlayingState(
+            StateFactory stateFactory,
+            MovePlayerSignal movePlayerSignal,
+            GameEndedSignal gameEndedSignal,
+            AttachToPlayerSignal attachToPlayerSignal,
+            LevelCompletedSignal levelCompletedSignal)
         {
             _stateFactory = stateFactory;
             _movePlayerSignal = movePlayerSignal;
             gameEndedSignal += OnGameEnded;
+            levelCompletedSignal += OnLevelCompleted;
             attachToPlayerSignal.Fire(false);
+        }
+
+        private void OnLevelCompleted()
+        {
+            _gameContext.CurrentState = _stateFactory.CreateStartingGameState(_gameContext);
         }
 
         private void OnGameEnded()
         {
-             _gameContext.CurrentState = _stateFactory.CreateGameOverState(_gameContext);
+            _gameContext.CurrentState = _stateFactory.CreateGameOverState(_gameContext);
         }
 
         public void SetContext(IGameContext context)

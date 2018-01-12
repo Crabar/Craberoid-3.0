@@ -69,14 +69,16 @@
     <Compile Include="Assets\Scripts\Signals\GameStateChangedSignal.cs" />
     <Compile Include="Assets\Scripts\Signals\GiveScorepointsSignal.cs" />
     <Compile Include="Assets\Scripts\Signals\LaunchBallSignal.cs" />
-    <Compile Include="Assets\Scripts\Signals\MoveBallSignal.cs" />
+    <Compile Include="Assets\Scripts\Signals\LevelCompletedSignal.cs" />
     <Compile Include="Assets\Scripts\Signals\MovePlayerSignal.cs" />
+    <Compile Include="Assets\Scripts\Signals\PlayerWinsSignal.cs" />
     <Compile Include="Assets\Scripts\States\GameOverState.cs" />
     <Compile Include="Assets\Scripts\States\IGameContext.cs" />
     <Compile Include="Assets\Scripts\States\IGameState.cs" />
     <Compile Include="Assets\Scripts\States\PlayingState.cs" />
     <Compile Include="Assets\Scripts\States\StartingGameState.cs" />
     <Compile Include="Assets\Scripts\States\StateFactory.cs" />
+    <Compile Include="Assets\Scripts\WinTextController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />

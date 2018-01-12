@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using Zenject;
 
 namespace LevelGenerators
@@ -12,10 +13,12 @@ namespace LevelGenerators
             _brickFactory = brickFactory;
         }
 
-        public void GenerateLevel()
+        public IList<BrickController> GenerateLevel()
         {
-            const int rows = 7;
-            const int columns = 10;
+            var bricks = new List<BrickController>();
+
+            const int rows = 1;
+            const int columns = 1;
 
             var currentZ = 0;
 
@@ -26,17 +29,20 @@ namespace LevelGenerators
 
             for (var i = 0; i < rows; i++)
             {
-                var currentX = - (columns - 1) * (xStep + gap) / 2;
+                var currentX = -(columns - 1) * (xStep + gap) / 2;
 
                 for (var j = 0; j < columns; j++)
                 {
                     var brick = _brickFactory.Create();
+                    bricks.Add(brick);
                     brick.transform.position = new Vector3(currentX + gap * j, 0, currentZ + gap * i);
                     currentX += xStep;
                 }
 
                 currentZ += zStep;
             }
+
+            return bricks;
         }
 
         public class Factory : Factory<ClassicLevelGenerator>
