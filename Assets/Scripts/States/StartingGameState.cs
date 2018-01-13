@@ -21,18 +21,17 @@ namespace States
             AttachToPlayerSignal attachToPlayerSignal,
             LevelManager levelManager,
             PlayerWinsSignal playerWinsSignal,
-            [Inject(Id = "PlayerTransform")]
-            Transform playerTransform)
+            ResetPlayerStateSignal resetPlayerStateSignal)
         {
             _stateFactory = stateFactory;
             _movePlayerSignal = movePlayerSignal;
             _launchBallSignal = launchBallSignal;
 
+            resetPlayerStateSignal.Fire();
             var isNextLevelAvailable = levelManager.TryGenerateNextLevel();
             if (isNextLevelAvailable)
             {
                 attachToPlayerSignal.Fire(true);
-                playerTransform.position = new Vector3(0, 0, -19);
             }
             else
             {

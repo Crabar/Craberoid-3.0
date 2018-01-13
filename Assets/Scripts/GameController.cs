@@ -21,19 +21,32 @@ public class GameController : ITickable, IFixedTickable, IGameContext, IInitiali
     private readonly GameStateChangedSignal _gameStateChangedSignal;
     private readonly StateFactory _stateFactory;
     private readonly WinTextController _winText;
+    private readonly ScoreTextController _scoreText;
 
-    public GameController(GameStateChangedSignal gameStateChangedSignal, StateFactory stateFactory, PlayerWinsSignal playerWinsSignal, WinTextController winText)
+    private int _score;
+
+    public GameController(GameStateChangedSignal gameStateChangedSignal, StateFactory stateFactory,
+        PlayerWinsSignal playerWinsSignal, GiveScorepointsSignal giveScorepointsSignal, ScoreTextController scoreText,
+        WinTextController winText)
     {
         _gameStateChangedSignal = gameStateChangedSignal;
         _stateFactory = stateFactory;
         _winText = winText;
+        _scoreText = scoreText;
 
         playerWinsSignal += OnPlayerWins;
+        giveScorepointsSignal += OnGainedScorepoints;
+    }
+
+    private void OnGainedScorepoints(int scorepoints)
+    {
+        _score += scorepoints;
+        _scoreText.UpdateScoreText(_score);
     }
 
     private void OnPlayerWins()
     {
-        _winText.GetComponent<Animator>().Play("WinTextAnimation");
+        _winText.ShowWin(_score);
     }
 
     public void Tick()
@@ -49,5 +62,6 @@ public class GameController : ITickable, IFixedTickable, IGameContext, IInitiali
     public void Initialize()
     {
         CurrentState = _stateFactory.CreateStartingGameState(this);
+        _scoreText.UpdateScoreText(_score);
     }
 }

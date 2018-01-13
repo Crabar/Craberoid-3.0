@@ -604,7 +604,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 78aa1c63614d5df42ad4e25aa5f5a514, type: 2}
-  m_CullingMode: 2
+  m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -795,6 +795,7 @@ GameObject:
   - component: {fileID: 842655836}
   - component: {fileID: 842655835}
   - component: {fileID: 842655837}
+  - component: {fileID: 842655838}
   m_Layer: 5
   m_Name: ScoreText
   m_TagString: Untagged
@@ -949,6 +950,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ed60fbd74c55e8499f43bcaa6dcfe82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &842655838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 842655833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0166d8ff8d905b048b2448179e1f5d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _components:
+  - {fileID: 842655837}
+  _identifier: 
+  _context: {fileID: 344457808}
+  _bindType: 0
 --- !u!1 &970003650
 GameObject:
   m_ObjectHideFlags: 0

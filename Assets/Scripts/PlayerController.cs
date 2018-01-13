@@ -10,10 +10,17 @@ public class PlayerController : MonoBehaviour
     private MovePlayerSignal _movePlayerSignal;
 
     [Inject]
-    public void Construct(Settings settings, MovePlayerSignal movePlayerSignal)
+    public void Construct(Settings settings, MovePlayerSignal movePlayerSignal, ResetPlayerStateSignal resetPlayerStateSignal)
     {
         _settings = settings;
         movePlayerSignal += MovePlayer;
+        resetPlayerStateSignal += OnReset;
+    }
+
+    private void OnReset()
+    {
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        transform.position = new Vector3(0, 0, -19);
     }
 
     private void MovePlayer(float horizontalOffset)

@@ -10,7 +10,7 @@ namespace LevelGenerators
         private readonly Queue<ILevelGenerator> _levelGenerators;
         private ILevelGenerator _currentLevel;
         private IList<BrickController> _bricksOnLevel;
-        private LevelCompletedSignal _levelCompletedSignal;
+        private readonly LevelCompletedSignal _levelCompletedSignal;
 
         public LevelManager(Settings settings, LevelGeneratorFactory levelGeneratorFactory, LevelCompletedSignal levelCompletedSignal)
         {
@@ -24,20 +24,20 @@ namespace LevelGenerators
 
         public bool TryGenerateNextLevel()
         {
-            if (_levelGenerators.Count > 0)
-            {
-                _currentLevel = _levelGenerators.Dequeue();
-                _bricksOnLevel = _currentLevel.GenerateLevel();
-                foreach (var brick in _bricksOnLevel)
-                {
-                    brick.BrickDestoyed += OnBrickDestroy;
-                }
-                return true;
-            }
-            else
+            if (_levelGenerators.Count <= 0)
             {
                 return false;
             }
+            
+            _currentLevel = _levelGenerators.Dequeue();
+            _bricksOnLevel = _currentLevel.GenerateLevel();
+            
+            foreach (var brick in _bricksOnLevel)
+            {
+                brick.BrickDestoyed += OnBrickDestroy;
+            }
+            
+            return true;
         }
 
         private void OnBrickDestroy(BrickController brick)

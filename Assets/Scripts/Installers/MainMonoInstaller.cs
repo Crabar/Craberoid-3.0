@@ -20,6 +20,7 @@ public class MainMonoInstaller : MonoInstaller<MainMonoInstaller>
         Container.DeclareSignal<AttachToPlayerSignal>();
         Container.DeclareSignal<LevelCompletedSignal>();
         Container.DeclareSignal<PlayerWinsSignal>();
+        Container.DeclareSignal<ResetPlayerStateSignal>();
         // factories
         Container.Bind<StateFactory>().AsSingle();
         Container.BindFactory<StartingGameState, StartingGameState.Factory>();
