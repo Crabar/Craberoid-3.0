@@ -26,7 +26,8 @@ public class GameController : ITickable, IFixedTickable, IGameContext, IInitiali
     private int _score;
 
     public GameController(GameStateChangedSignal gameStateChangedSignal, StateFactory stateFactory,
-        PlayerWinsSignal playerWinsSignal, GiveScorepointsSignal giveScorepointsSignal, ScoreTextController scoreText,
+        PlayerWinsSignal playerWinsSignal, PlayerLosesSignal playerLosesSignal,
+        GiveScorepointsSignal giveScorepointsSignal, ScoreTextController scoreText,
         WinTextController winText)
     {
         _gameStateChangedSignal = gameStateChangedSignal;
@@ -35,7 +36,13 @@ public class GameController : ITickable, IFixedTickable, IGameContext, IInitiali
         _scoreText = scoreText;
 
         playerWinsSignal += OnPlayerWins;
+        playerLosesSignal += OnPlayerLoses;
         giveScorepointsSignal += OnGainedScorepoints;
+    }
+
+    private void OnPlayerLoses()
+    {
+        _winText.ShowLose(_score);
     }
 
     private void OnGainedScorepoints(int scorepoints)

@@ -8,7 +8,7 @@ using Zenject;
 
 public class ScoreTextController : MonoBehaviour
 {
-    private const float SecondsForPoint = 0.1f;
+    private const float SecondsForPoint = 0.07f;
     
     private int _currentScore;
     private int _realScore;

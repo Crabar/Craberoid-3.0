@@ -72,6 +72,7 @@
     <Compile Include="Assets\Scripts\Signals\LaunchBallSignal.cs" />
     <Compile Include="Assets\Scripts\Signals\LevelCompletedSignal.cs" />
     <Compile Include="Assets\Scripts\Signals\MovePlayerSignal.cs" />
+    <Compile Include="Assets\Scripts\Signals\PlayerLosesSignal.cs" />
     <Compile Include="Assets\Scripts\Signals\PlayerWinsSignal.cs" />
     <Compile Include="Assets\Scripts\Signals\ResetPlayerStateSignal.cs" />
     <Compile Include="Assets\Scripts\States\GameOverState.cs" />

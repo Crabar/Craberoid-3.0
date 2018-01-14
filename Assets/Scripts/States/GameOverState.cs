@@ -7,9 +7,8 @@ namespace States
     {
         private IGameContext _gameContext;
 
-        public GameOverState(MovePlayerSignal movePlayerSignal)
+        public GameOverState()
         {
-            movePlayerSignal.Fire(0);
         }
 
         public void SetContext(IGameContext context)

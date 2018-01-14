@@ -10,6 +10,9 @@ namespace States
         private readonly LaunchBallSignal _launchBallSignal;
         private readonly StateFactory _stateFactory;
         private readonly MovePlayerSignal _movePlayerSignal;
+        private readonly AttachToPlayerSignal _attachToPlayerSignal;
+        private readonly PlayerWinsSignal _playerWinsSignal;
+        private readonly LevelManager _levelManager;
 
         private readonly int _startingBallSpeed;
         private IGameContext _gameContext;
@@ -24,25 +27,31 @@ namespace States
             ResetPlayerStateSignal resetPlayerStateSignal)
         {
             _stateFactory = stateFactory;
+            _levelManager = levelManager;
+            _attachToPlayerSignal = attachToPlayerSignal;
+            _playerWinsSignal = playerWinsSignal;
             _movePlayerSignal = movePlayerSignal;
             _launchBallSignal = launchBallSignal;
 
             resetPlayerStateSignal.Fire();
-            var isNextLevelAvailable = levelManager.TryGenerateNextLevel();
-            if (isNextLevelAvailable)
-            {
-                attachToPlayerSignal.Fire(true);
-            }
-            else
-            {
-                playerWinsSignal.Fire();
-            }
         }
 
 
         public void SetContext(IGameContext context)
         {
             _gameContext = context;
+            
+            var isNextLevelAvailable = _levelManager.TryGenerateNextLevel();
+            
+            if (isNextLevelAvailable)
+            {
+                _attachToPlayerSignal.Fire(true);
+            }
+            else
+            {
+                _gameContext.CurrentState = _stateFactory.CreateGameOverState(_gameContext);
+                _playerWinsSignal.Fire();
+            }
         }
 
         public void Tick()
