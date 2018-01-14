@@ -10,4 +10,10 @@ public class WinTextController : MonoBehaviour
         GetComponent<TextMeshProUGUI>().text = $"You win!\nYour score is {totalScore}.";
         GetComponent<Animator>().Play("WinTextAnimation");
     }
+
+    public void ShowLose(int totalScore)
+    {
+        GetComponent<TextMeshProUGUI>().text = $"Game over!\nYour score is {totalScore}.";
+        GetComponent<Animator>().Play("WinTextAnimation");
+    }
 }

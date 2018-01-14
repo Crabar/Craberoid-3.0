@@ -49,8 +49,8 @@ namespace States
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                _launchBallSignal.Fire(new Vector3(0, 0, 1));
-//                _launchBallSignal.Fire(new Vector3(Random.Range(-20, 20), 0, Random.Range(5, 20)));
+//                _launchBallSignal.Fire(new Vector3(0, 0, 1));
+                _launchBallSignal.Fire(new Vector3(Random.Range(-20, 20), 0, Random.Range(5, 20)));
                 _gameContext.CurrentState = _stateFactory.CreatePlayingState(_gameContext);
             }
         }

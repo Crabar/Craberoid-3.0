@@ -17,8 +17,8 @@ namespace LevelGenerators
         {
             var bricks = new List<BrickController>();
 
-            const int rows = 1;
-            const int columns = 1;
+            const int rows = 5;
+            const int columns = 8;
 
             var currentZ = 0;
 
