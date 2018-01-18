@@ -2,6 +2,7 @@
 {
     public enum LevelGenerator
     {
-        Classic
+        Classic,
+        Star
     }
 }

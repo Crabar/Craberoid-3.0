@@ -29,6 +29,7 @@ public class MainMonoInstaller : MonoInstaller<MainMonoInstaller>
         Container.BindFactory<GameOverState, GameOverState.Factory>();
 
         Container.BindFactory<ClassicLevelGenerator, ClassicLevelGenerator.Factory>();
+        Container.BindFactory<StarLevelGenerator, StarLevelGenerator.Factory>();
         //
         Container.BindFactory<BrickController, BrickController.Factory>()
                  .FromComponentInNewPrefab(BrickSettings.BrickPrefab)
