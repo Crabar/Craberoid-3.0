@@ -8,16 +8,33 @@ public class PlayerController : MonoBehaviour
 {
     private Settings _settings;
     private MovePlayerSignal _movePlayerSignal;
+    private MovePlayerToPositionSignal _movePlayerToPositionSignal;
     private ResetPlayerStateSignal _resetPlayerStateSignal;
 
     [Inject]
-    public void Construct(Settings settings, MovePlayerSignal movePlayerSignal, ResetPlayerStateSignal resetPlayerStateSignal)
+    public void Construct(
+        Settings settings,
+        MovePlayerSignal movePlayerSignal,
+        MovePlayerToPositionSignal movePlayerToPositionSignal,
+        ResetPlayerStateSignal resetPlayerStateSignal)
     {
         _settings = settings;
         _movePlayerSignal = movePlayerSignal;
+        _movePlayerToPositionSignal = movePlayerToPositionSignal;
         _resetPlayerStateSignal = resetPlayerStateSignal;
         _movePlayerSignal += MovePlayer;
+        _movePlayerToPositionSignal += MovePlayerToPosition;
         _resetPlayerStateSignal += OnReset;
+    }
+
+    private void MovePlayerToPosition(float targetPosition)
+    {
+        var halfWidth = GetComponent<MeshCollider>().bounds.extents.x;
+        transform.position = new Vector3(Mathf.Clamp(targetPosition, -19.5f + halfWidth, 19.5f - halfWidth), transform.position.y, transform.position.z);
+//        var moveVector = Vector3.MoveTowards(new Vector3(transform.position.x, 0f, 0f), new Vector3(targetPosition, 0f, 0f), _settings.playerSpeed);
+//        System.Diagnostics.Debug.WriteLine(moveVector);
+//        var rb = GetComponent<Rigidbody>();
+//        rb.velocity = moveVector;
     }
 
     private void OnDestroy()

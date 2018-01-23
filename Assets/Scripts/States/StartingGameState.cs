@@ -1,4 +1,5 @@
-﻿using LevelGenerators;
+﻿using System;
+using LevelGenerators;
 using Signals;
 using UnityEngine;
 using Zenject;
@@ -10,6 +11,7 @@ namespace States
         private readonly LaunchBallSignal _launchBallSignal;
         private readonly StateFactory _stateFactory;
         private readonly MovePlayerSignal _movePlayerSignal;
+        private readonly MovePlayerToPositionSignal _movePlayerToPositionSignal;
         private readonly AttachToPlayerSignal _attachToPlayerSignal;
         private readonly PlayerWinsSignal _playerWinsSignal;
         private readonly LevelManager _levelManager;
@@ -24,12 +26,14 @@ namespace States
             AttachToPlayerSignal attachToPlayerSignal,
             LevelManager levelManager,
             PlayerWinsSignal playerWinsSignal,
-            ResetPlayerStateSignal resetPlayerStateSignal)
+            ResetPlayerStateSignal resetPlayerStateSignal,
+            MovePlayerToPositionSignal movePlayerToPositionSignal)
         {
             _stateFactory = stateFactory;
             _levelManager = levelManager;
             _attachToPlayerSignal = attachToPlayerSignal;
             _playerWinsSignal = playerWinsSignal;
+            _movePlayerToPositionSignal = movePlayerToPositionSignal;
             _movePlayerSignal = movePlayerSignal;
             _launchBallSignal = launchBallSignal;
 
@@ -40,9 +44,9 @@ namespace States
         public void SetContext(IGameContext context)
         {
             _gameContext = context;
-            
+
             var isNextLevelAvailable = _levelManager.TryGenerateNextLevel();
-            
+
             if (isNextLevelAvailable)
             {
                 _attachToPlayerSignal.Fire(true);
@@ -59,15 +63,15 @@ namespace States
             if (Input.GetKeyDown(KeyCode.Space))
             {
 //                _launchBallSignal.Fire(new Vector3(0, 0, 1));
-                _launchBallSignal.Fire(new Vector3(Random.Range(-20, 20), 0, Random.Range(5, 20)));
+                _launchBallSignal.Fire(new Vector3(UnityEngine.Random.Range(-20, 20), 0, UnityEngine.Random.Range(5, 20)));
                 _gameContext.CurrentState = _stateFactory.CreatePlayingState(_gameContext);
             }
         }
 
         public void FixedTick()
         {
-            var moveHorizontal = Input.GetAxis("Horizontal");
-            _movePlayerSignal.Fire(moveHorizontal);
+            var targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            _movePlayerToPositionSignal.Fire(targetPosition.x);
         }
 
         public class Factory : Factory<StartingGameState>

@@ -67,6 +67,42 @@ namespace LevelGenerators
             bricks.Add(rowBrick);
             rowBrick.transform.position = new Vector3(10.1f, 0, 3.2f);
 
+            rowBrick = _brickFactory.Create();
+            bricks.Add(rowBrick);
+            rowBrick.transform.position = new Vector3(-7.8f, 0, 1.5f);
+
+            rowBrick = _brickFactory.Create();
+            bricks.Add(rowBrick);
+            rowBrick.transform.position = new Vector3(7.8f, 0, 1.5f);
+
+            rowBrick = _brickFactory.Create();
+            bricks.Add(rowBrick);
+            rowBrick.transform.position = new Vector3(-2.9f, 0, -1f);
+
+            rowBrick = _brickFactory.Create();
+            bricks.Add(rowBrick);
+            rowBrick.transform.position = new Vector3(2.9f, 0, -1f);
+
+            rowBrick = _brickFactory.Create();
+            bricks.Add(rowBrick);
+            rowBrick.transform.position = new Vector3(0f, 0, -2.2f);
+
+            rowBrick = _brickFactory.Create();
+            bricks.Add(rowBrick);
+            rowBrick.transform.position = new Vector3(-2.5f, 0, -3f);
+
+            rowBrick = _brickFactory.Create();
+            bricks.Add(rowBrick);
+            rowBrick.transform.position = new Vector3(2.5f, 0, -3f);
+
+            rowBrick = _brickFactory.Create();
+            bricks.Add(rowBrick);
+            rowBrick.transform.position = new Vector3(-5.1f, 0, -3.6f);
+
+            rowBrick = _brickFactory.Create();
+            bricks.Add(rowBrick);
+            rowBrick.transform.position = new Vector3(5.1f, 0, -3.6f);
+
             return bricks;
         }
 

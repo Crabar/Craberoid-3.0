@@ -23,4 +23,4 @@ MonoBehaviour:
     - {fileID: 2100000, guid: a5ef497de21144ea5bb1874bd2609593, type: 2}
     GainedScore: 10
   LevelManager:
-    Levels: 00000000
+    Levels: 0000000001000000

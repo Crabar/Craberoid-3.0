@@ -14,6 +14,7 @@ namespace States
         private readonly StateFactory _stateFactory;
         private readonly PlayerLosesSignal _playerLosesSignal;
         private readonly GiveScorepointsSignal _giveScorepointsSignal;
+        private readonly MovePlayerToPositionSignal _movePlayerToPositionSignal;
 
         public PlayingState(
             StateFactory stateFactory,
@@ -22,13 +23,15 @@ namespace States
             AttachToPlayerSignal attachToPlayerSignal,
             LevelCompletedSignal levelCompletedSignal,
             ResetPlayerStateSignal resetPlayerStateSignal,
-            PlayerLosesSignal playerLosesSignal, GiveScorepointsSignal giveScorepointsSignal)
+            PlayerLosesSignal playerLosesSignal, GiveScorepointsSignal giveScorepointsSignal,
+            MovePlayerToPositionSignal movePlayerToPositionSignal)
         {
             _stateFactory = stateFactory;
             _movePlayerSignal = movePlayerSignal;
             _resetPlayerStateSignal = resetPlayerStateSignal;
             _playerLosesSignal = playerLosesSignal;
             _giveScorepointsSignal = giveScorepointsSignal;
+            _movePlayerToPositionSignal = movePlayerToPositionSignal;
             gameEndedSignal += OnGameEnded;
             levelCompletedSignal += OnLevelCompleted;
             attachToPlayerSignal.Fire(false);
@@ -59,8 +62,8 @@ namespace States
 
         public void FixedTick()
         {
-            var moveHorizontal = Input.GetAxis("Horizontal");
-            _movePlayerSignal.Fire(moveHorizontal);
+            var targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            _movePlayerToPositionSignal.Fire(targetPosition.x);
         }
 
         public class Factory : Factory<PlayingState>

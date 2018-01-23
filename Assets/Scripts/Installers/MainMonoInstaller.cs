@@ -15,6 +15,7 @@ public class MainMonoInstaller : MonoInstaller<MainMonoInstaller>
         Container.DeclareSignal<LaunchBallSignal>();
         Container.DeclareSignal<GameStateChangedSignal>();
         Container.DeclareSignal<MovePlayerSignal>();
+        Container.DeclareSignal<MovePlayerToPositionSignal>();
         Container.DeclareSignal<GameEndedSignal>();
         Container.DeclareSignal<GiveScorepointsSignal>();
         Container.DeclareSignal<AttachToPlayerSignal>();
