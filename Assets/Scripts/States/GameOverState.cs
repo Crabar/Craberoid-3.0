@@ -7,8 +7,9 @@ namespace States
     {
         private IGameContext _gameContext;
 
-        public GameOverState()
+        public GameOverState(SaveResultToScoreboardSignal saveResultToScoreboardSignal)
         {
+            saveResultToScoreboardSignal.Fire();
         }
 
         public void SetContext(IGameContext context)

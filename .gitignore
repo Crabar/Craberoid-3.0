@@ -1,4 +1,34 @@
-/.idea/
-/Library/metadata/
-/Library/Colab/
-/Temp/
+# =============== #
+# Unity generated #
+# =============== #
+Temp/
+Library/
+PC_BUILD_Data/
+MAC_BUILD.app/
+
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+ExportedObj/
+obj/
+*.svd
+*.userprefs
+/*.csproj
+*.pidb
+*.suo
+/*.sln
+*.user
+*.unityproj
+*.booproj
+.idea/
+
+# ============ #
+# OS generated #
+# ============ #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

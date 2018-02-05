@@ -11,6 +11,7 @@ public class MainMonoInstaller : MonoInstaller<MainMonoInstaller>
     public override void InstallBindings()
     {
         Container.BindInterfacesAndSelfTo<GameController>().AsSingle();
+        Container.BindInterfacesAndSelfTo<ScoreboardController>().AsSingle();
         // signals
         Container.DeclareSignal<LaunchBallSignal>();
         Container.DeclareSignal<GameStateChangedSignal>();
@@ -23,6 +24,7 @@ public class MainMonoInstaller : MonoInstaller<MainMonoInstaller>
         Container.DeclareSignal<PlayerWinsSignal>();
         Container.DeclareSignal<ResetPlayerStateSignal>();
         Container.DeclareSignal<PlayerLosesSignal>();
+        Container.DeclareSignal<SaveResultToScoreboardSignal>();
         // factories
         Container.Bind<StateFactory>().AsSingle();
         Container.BindFactory<StartingGameState, StartingGameState.Factory>();

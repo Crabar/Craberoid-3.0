@@ -1,7 +1,8 @@
-﻿namespace Signals
+﻿using Zenject;
+
+namespace Signals
 {
-    public class SaveResultToScoreboardSignal
+    public class SaveResultToScoreboardSignal : Signal<SaveResultToScoreboardSignal>
     {
-        
     }
 }

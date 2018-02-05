@@ -3,17 +3,22 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class WinTextController : MonoBehaviour
+public class EndGameTextController : MonoBehaviour
 {
     public void ShowWin(int totalScore)
     {
-        GetComponent<TextMeshProUGUI>().text = $"You win!\nYour score is {totalScore}.";
-        GetComponent<Animator>().Play("WinTextAnimation");
+        SetText($"You win!\nYour score is {totalScore}.");
+        GetComponent<Animator>().Play("EndGameTextAnimation");
     }
 
     public void ShowLose(int totalScore)
     {
-        GetComponent<TextMeshProUGUI>().text = $"Game over!\nYour score is {totalScore}.";
-        GetComponent<Animator>().Play("WinTextAnimation");
+        SetText($"Game over!\nYour score is {totalScore}.");
+        GetComponent<Animator>().Play("EndGameTextAnimation");
+    }
+
+    private void SetText(string newText)
+    {
+        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = newText;
     }
 }

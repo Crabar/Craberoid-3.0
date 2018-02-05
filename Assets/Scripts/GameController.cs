@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Signals;
 using States;
@@ -20,29 +21,43 @@ public class GameController : ITickable, IFixedTickable, IGameContext, IInitiali
 
     private readonly GameStateChangedSignal _gameStateChangedSignal;
     private readonly StateFactory _stateFactory;
-    private readonly WinTextController _winText;
+    private readonly EndGameTextController _endGameText;
     private readonly ScoreTextController _scoreText;
+    private readonly ScoreboardController _scoreboardController;
 
     private int _score;
 
-    public GameController(GameStateChangedSignal gameStateChangedSignal, StateFactory stateFactory,
-        PlayerWinsSignal playerWinsSignal, PlayerLosesSignal playerLosesSignal,
-        GiveScorepointsSignal giveScorepointsSignal, ScoreTextController scoreText,
-        WinTextController winText)
+    public GameController(
+        GameStateChangedSignal gameStateChangedSignal,
+        StateFactory stateFactory,
+        PlayerWinsSignal playerWinsSignal,
+        PlayerLosesSignal playerLosesSignal,
+        GiveScorepointsSignal giveScorepointsSignal,
+        SaveResultToScoreboardSignal saveResultToScoreboardSignal,
+        ScoreTextController scoreText,
+        EndGameTextController endGameText,
+        ScoreboardController scoreboardController)
     {
         _gameStateChangedSignal = gameStateChangedSignal;
         _stateFactory = stateFactory;
-        _winText = winText;
+        _endGameText = endGameText;
         _scoreText = scoreText;
+        _scoreboardController = scoreboardController;
 
         playerWinsSignal += OnPlayerWins;
         playerLosesSignal += OnPlayerLoses;
         giveScorepointsSignal += OnGainedScorepoints;
+        saveResultToScoreboardSignal += OnSaveGameResult;
+    }
+
+    private void OnSaveGameResult()
+    {
+        _scoreboardController.SaveResultToScoreboard(new GameResultDto { Score = _score, Timestamp = DateTime.Now});
     }
 
     private void OnPlayerLoses()
     {
-        _winText.ShowLose(_score);
+        _endGameText.ShowLose(_score);
     }
 
     private void OnGainedScorepoints(int scorepoints)
@@ -53,7 +68,7 @@ public class GameController : ITickable, IFixedTickable, IGameContext, IInitiali
 
     private void OnPlayerWins()
     {
-        _winText.ShowWin(_score);
+        _endGameText.ShowWin(_score);
     }
 
     public void Tick()

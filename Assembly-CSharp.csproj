@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\BallController.cs" />
     <Compile Include="Assets\Scripts\BrickController.cs" />
+    <Compile Include="Assets\Scripts\EndGameTextController.cs" />
     <Compile Include="Assets\Scripts\FloorController.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\Installers\GameSettingsInstaller.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="Assets\Scripts\LevelGenerators\StarLevelGenerator.cs" />
     <Compile Include="Assets\Scripts\MenuController.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\ScoreboardController.cs" />
     <Compile Include="Assets\Scripts\ScoreTextController.cs" />
     <Compile Include="Assets\Scripts\Signals\AttachToPlayerSignal.cs" />
     <Compile Include="Assets\Scripts\Signals\GameEndedSignal.cs" />
@@ -77,13 +79,13 @@
     <Compile Include="Assets\Scripts\Signals\PlayerLosesSignal.cs" />
     <Compile Include="Assets\Scripts\Signals\PlayerWinsSignal.cs" />
     <Compile Include="Assets\Scripts\Signals\ResetPlayerStateSignal.cs" />
+    <Compile Include="Assets\Scripts\Signals\SaveResultToScoreboardSignal.cs" />
     <Compile Include="Assets\Scripts\States\GameOverState.cs" />
     <Compile Include="Assets\Scripts\States\IGameContext.cs" />
     <Compile Include="Assets\Scripts\States\IGameState.cs" />
     <Compile Include="Assets\Scripts\States\PlayingState.cs" />
     <Compile Include="Assets\Scripts\States\StartingGameState.cs" />
     <Compile Include="Assets\Scripts\States\StateFactory.cs" />
-    <Compile Include="Assets\Scripts\WinTextController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
