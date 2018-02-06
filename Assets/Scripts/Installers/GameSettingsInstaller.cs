@@ -1,5 +1,6 @@
 using LevelGenerators;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using Zenject;
 
 //[CreateAssetMenu(fileName = "GameSettingsInstaller", menuName = "Installers/GameSettingsInstaller")]
@@ -9,6 +10,7 @@ public class GameSettingsInstaller : ScriptableObjectInstaller<GameSettingsInsta
     public BallController.Settings Ball;
     public BrickController.Settings Brick;
     public LevelManager.Settings LevelManager;
+    public ScoreboardUIController.Settings Scoreboard;
 
     public override void InstallBindings()
     {
@@ -16,5 +18,6 @@ public class GameSettingsInstaller : ScriptableObjectInstaller<GameSettingsInsta
         Container.BindInstance(Ball);
         Container.BindInstance(Brick);
         Container.BindInstance(LevelManager);
+        Container.BindInstance(Scoreboard);
     }
 }

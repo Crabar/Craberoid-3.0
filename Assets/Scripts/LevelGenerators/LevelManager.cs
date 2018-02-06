@@ -28,15 +28,15 @@ namespace LevelGenerators
             {
                 return false;
             }
-            
+
             _currentLevel = _levelGenerators.Dequeue();
             _bricksOnLevel = _currentLevel.GenerateLevel();
-            
+
             foreach (var brick in _bricksOnLevel)
             {
                 brick.BrickDestoyed += OnBrickDestroy;
             }
-            
+
             return true;
         }
 

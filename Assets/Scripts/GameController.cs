@@ -23,7 +23,7 @@ public class GameController : ITickable, IFixedTickable, IGameContext, IInitiali
     private readonly StateFactory _stateFactory;
     private readonly EndGameTextController _endGameText;
     private readonly ScoreTextController _scoreText;
-    private readonly ScoreboardController _scoreboardController;
+    private readonly ScoreboardDataController _scoreboardDataController;
 
     private int _score;
 
@@ -36,13 +36,13 @@ public class GameController : ITickable, IFixedTickable, IGameContext, IInitiali
         SaveResultToScoreboardSignal saveResultToScoreboardSignal,
         ScoreTextController scoreText,
         EndGameTextController endGameText,
-        ScoreboardController scoreboardController)
+        ScoreboardDataController scoreboardDataController)
     {
         _gameStateChangedSignal = gameStateChangedSignal;
         _stateFactory = stateFactory;
         _endGameText = endGameText;
         _scoreText = scoreText;
-        _scoreboardController = scoreboardController;
+        _scoreboardDataController = scoreboardDataController;
 
         playerWinsSignal += OnPlayerWins;
         playerLosesSignal += OnPlayerLoses;
@@ -52,7 +52,7 @@ public class GameController : ITickable, IFixedTickable, IGameContext, IInitiali
 
     private void OnSaveGameResult()
     {
-        _scoreboardController.SaveResultToScoreboard(new GameResultDto { Score = _score, Timestamp = DateTime.Now});
+        _scoreboardDataController.SaveResultToScoreboard(new GameResultDto { Score = _score, Timestamp = DateTime.Now });
     }
 
     private void OnPlayerLoses()

@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Networking.Types;
 
-public class ScoreboardController
+public class ScoreboardDataController
 {
     private LinkedList<GameResultDto> _scoreboard;
     private readonly string _path;
 
-    public ScoreboardController()
+    public ScoreboardDataController()
     {
         _path = Application.persistentDataPath + "/scores.bin";
         LoadScoreboard();

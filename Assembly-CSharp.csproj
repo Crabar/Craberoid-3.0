@@ -66,7 +66,8 @@
     <Compile Include="Assets\Scripts\LevelGenerators\StarLevelGenerator.cs" />
     <Compile Include="Assets\Scripts\MenuController.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\ScoreboardController.cs" />
+    <Compile Include="Assets\Scripts\ScoreboardDataController.cs" />
+    <Compile Include="Assets\Scripts\ScoreboardUIController.cs" />
     <Compile Include="Assets\Scripts\ScoreTextController.cs" />
     <Compile Include="Assets\Scripts\Signals\AttachToPlayerSignal.cs" />
     <Compile Include="Assets\Scripts\Signals\GameEndedSignal.cs" />

@@ -9,11 +9,11 @@ using Zenject;
 public class ScoreTextController : MonoBehaviour
 {
     private const float SecondsForPoint = 0.07f;
-    
+
     private int _currentScore;
     private int _realScore;
     private float _timestamp;
-    
+
     public void UpdateScoreText(int newScore)
     {
         _timestamp = Time.time;
@@ -26,7 +26,7 @@ public class ScoreTextController : MonoBehaviour
         {
             return;
         }
-        
+
         if (Time.time - _timestamp < SecondsForPoint)
         {
             return;
