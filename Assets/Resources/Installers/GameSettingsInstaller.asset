@@ -24,3 +24,6 @@ MonoBehaviour:
     GainedScore: 10
   LevelManager:
     Levels: 0000000001000000
+  Scoreboard:
+    GameResultPrefab: {fileID: 1076844550758240, guid: 1d8904359b8e33748a8ff9649ef257ae,
+      type: 2}

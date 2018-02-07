@@ -55,9 +55,10 @@ public class GameController : ITickable, IFixedTickable, IGameContext, IInitiali
         _scoreboardDataController.SaveResultToScoreboard(new GameResultDto { Score = _score, Timestamp = DateTime.Now });
     }
 
-    private void OnPlayerLoses()
+    private async void OnPlayerLoses()
     {
-        _endGameText.ShowLose(_score);
+        await _endGameText.ShowLose(_score);
+        _scoreboardDataController.ShowScoreboard();
     }
 
     private void OnGainedScorepoints(int scorepoints)
@@ -66,9 +67,10 @@ public class GameController : ITickable, IFixedTickable, IGameContext, IInitiali
         _scoreText.UpdateScoreText(_score);
     }
 
-    private void OnPlayerWins()
+    private async void OnPlayerWins()
     {
-        _endGameText.ShowWin(_score);
+        await _endGameText.ShowWin(_score);
+        _scoreboardDataController.ShowScoreboard();
     }
 
     public void Tick()

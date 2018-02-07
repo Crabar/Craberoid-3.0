@@ -10,26 +10,61 @@ public class ScoreboardDataController
 {
     private LinkedList<GameResultDto> _scoreboard;
     private readonly string _path;
+    private readonly ScoreboardUIController _scoreboardUiController;
 
-    public ScoreboardDataController()
+    public ScoreboardDataController(ScoreboardUIController scoreboardUiController)
     {
+        _scoreboardUiController = scoreboardUiController;
+        _scoreboardUiController.HidePanel();
         _path = Application.persistentDataPath + "/scores.bin";
         LoadScoreboard();
     }
 
+    public void ShowScoreboard()
+    {
+        foreach (var gameResultDto in _scoreboard)
+        {
+            _scoreboardUiController.AddElement(gameResultDto);
+        }
+
+        _scoreboardUiController.ShowPanel();
+    }
+
     public void SaveResultToScoreboard(GameResultDto result)
     {
-        var curResultNode = _scoreboard.First;
-        while (curResultNode != null)
+        if (_scoreboard.Count == 0)
         {
-            if (result.Score > curResultNode.Value.Score)
+            _scoreboard.AddFirst(result);
+        }
+        else
+        {
+            var curResultNode = _scoreboard.First;
+            var resAdded = false;
+            while (curResultNode != null)
             {
-                _scoreboard.AddBefore(curResultNode, result);
-                _scoreboard.RemoveLast();
-                break;
-            }
+                if (result.Score > curResultNode.Value.Score)
+                {
+                    _scoreboard.AddBefore(curResultNode, result);
+                    resAdded = true;
+                }
 
-            curResultNode = curResultNode.Next;
+                if (result.Score == curResultNode.Value.Score)
+                {
+                    _scoreboard.AddAfter(curResultNode, result);
+                    resAdded = true;
+                }
+
+                if (resAdded)
+                {
+                    if (_scoreboard.Count > 5)
+                    {
+                        _scoreboard.RemoveLast();
+                    }
+                    break;
+                }
+
+                curResultNode = curResultNode.Next;
+            }
         }
 
         var formatter = new BinaryFormatter();

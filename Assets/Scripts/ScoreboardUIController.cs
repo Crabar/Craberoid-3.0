@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using Zenject;
 
@@ -20,6 +21,17 @@ public class ScoreboardUIController : MonoBehaviour
     {
         var gameResultText = _diContainer.InstantiatePrefab(_settings.GameResultPrefab);
         gameResultText.transform.SetParent(transform, false);
+        gameResultText.GetComponent<TextMeshProUGUI>().text = $"{gameResultDto.Timestamp.Hour}:{gameResultDto.Timestamp.Minute}    {gameResultDto.Score}";
+    }
+
+    public void ShowPanel()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public void HidePanel()
+    {
+        gameObject.SetActive(false);
     }
 
     [Serializable]

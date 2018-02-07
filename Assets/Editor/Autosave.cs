@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System.Timers;
+using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
@@ -9,13 +10,16 @@ namespace Editor
     {
         static Autosave()
         {
-            EditorApplication.playModeStateChanged += e =>
+            var nextTime = EditorApplication.timeSinceStartup + 60;
+
+            EditorApplication.update += () =>
             {
-                if (EditorApplication.isPlayingOrWillChangePlaymode && !EditorApplication.isPlaying)
+                if (!EditorApplication.isPlaying && nextTime < EditorApplication.timeSinceStartup)
                 {
                     Debug.Log("Auto-saving all open scenes...");
                     EditorSceneManager.SaveOpenScenes();
                     AssetDatabase.SaveAssets();
+                    nextTime = EditorApplication.timeSinceStartup + 60;
                 }
             };
         }

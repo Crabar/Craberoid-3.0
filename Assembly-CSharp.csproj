@@ -87,6 +87,7 @@
     <Compile Include="Assets\Scripts\States\PlayingState.cs" />
     <Compile Include="Assets\Scripts\States\StartingGameState.cs" />
     <Compile Include="Assets\Scripts\States\StateFactory.cs" />
+    <Compile Include="Assets\Scripts\Utils\Extensions\AnimatorExtensions.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />

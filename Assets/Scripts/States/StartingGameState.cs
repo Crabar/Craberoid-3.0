@@ -10,10 +10,8 @@ namespace States
     {
         private readonly LaunchBallSignal _launchBallSignal;
         private readonly StateFactory _stateFactory;
-        private readonly MovePlayerSignal _movePlayerSignal;
         private readonly MovePlayerToPositionSignal _movePlayerToPositionSignal;
         private readonly AttachToPlayerSignal _attachToPlayerSignal;
-        private readonly PlayerWinsSignal _playerWinsSignal;
         private readonly LevelManager _levelManager;
 
         private readonly int _startingBallSpeed;
@@ -21,20 +19,16 @@ namespace States
 
         public StartingGameState(
             StateFactory stateFactory,
-            MovePlayerSignal movePlayerSignal,
             LaunchBallSignal launchBallSignal,
             AttachToPlayerSignal attachToPlayerSignal,
             LevelManager levelManager,
-            PlayerWinsSignal playerWinsSignal,
             ResetPlayerStateSignal resetPlayerStateSignal,
             MovePlayerToPositionSignal movePlayerToPositionSignal)
         {
             _stateFactory = stateFactory;
             _levelManager = levelManager;
             _attachToPlayerSignal = attachToPlayerSignal;
-            _playerWinsSignal = playerWinsSignal;
             _movePlayerToPositionSignal = movePlayerToPositionSignal;
-            _movePlayerSignal = movePlayerSignal;
             _launchBallSignal = launchBallSignal;
 
             resetPlayerStateSignal.Fire();
@@ -53,8 +47,7 @@ namespace States
             }
             else
             {
-                _gameContext.CurrentState = _stateFactory.CreateGameOverState(_gameContext);
-                _playerWinsSignal.Fire();
+                _gameContext.CurrentState = _stateFactory.CreateGameOverState(_gameContext, EndGameResult.Win);
             }
         }
 

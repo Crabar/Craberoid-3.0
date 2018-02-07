@@ -7,29 +7,24 @@ namespace States
 {
     public class PlayingState : IGameState
     {
-        private readonly MovePlayerSignal _movePlayerSignal;
         private readonly ResetPlayerStateSignal _resetPlayerStateSignal;
         private IGameState _gameStateImplementation;
         private IGameContext _gameContext;
         private readonly StateFactory _stateFactory;
-        private readonly PlayerLosesSignal _playerLosesSignal;
         private readonly GiveScorepointsSignal _giveScorepointsSignal;
         private readonly MovePlayerToPositionSignal _movePlayerToPositionSignal;
 
         public PlayingState(
             StateFactory stateFactory,
-            MovePlayerSignal movePlayerSignal,
             GameEndedSignal gameEndedSignal,
             AttachToPlayerSignal attachToPlayerSignal,
             LevelCompletedSignal levelCompletedSignal,
             ResetPlayerStateSignal resetPlayerStateSignal,
-            PlayerLosesSignal playerLosesSignal, GiveScorepointsSignal giveScorepointsSignal,
+            GiveScorepointsSignal giveScorepointsSignal,
             MovePlayerToPositionSignal movePlayerToPositionSignal)
         {
             _stateFactory = stateFactory;
-            _movePlayerSignal = movePlayerSignal;
             _resetPlayerStateSignal = resetPlayerStateSignal;
-            _playerLosesSignal = playerLosesSignal;
             _giveScorepointsSignal = giveScorepointsSignal;
             _movePlayerToPositionSignal = movePlayerToPositionSignal;
             gameEndedSignal += OnGameEnded;
@@ -46,8 +41,7 @@ namespace States
         private void OnGameEnded()
         {
             _resetPlayerStateSignal.Fire();
-            _playerLosesSignal.Fire();
-            _gameContext.CurrentState = _stateFactory.CreateGameOverState(_gameContext);
+            _gameContext.CurrentState = _stateFactory.CreateGameOverState(_gameContext, EndGameResult.Lose);
         }
 
         public void SetContext(IGameContext context)

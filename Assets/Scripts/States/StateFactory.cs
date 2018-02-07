@@ -35,9 +35,11 @@ namespace States
             return CreateAndInitState(_playingStateFactory, context);
         }
 
-        public IGameState CreateGameOverState(IGameContext context)
+        public IGameState CreateGameOverState(IGameContext context, EndGameResult endGameResult)
         {
-            return CreateAndInitState(_gameOverStateFactory, context);
+            var state = CreateAndInitState(_gameOverStateFactory, context);
+            (state as GameOverState)?.SetGameResult(endGameResult);
+            return state;
         }
     }
 }

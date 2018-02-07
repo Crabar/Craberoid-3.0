@@ -13,8 +13,11 @@ public class BallController : MonoBehaviour
     [Inject(Id = "PlayerTransform")] public Transform PlayerTransform;
 
     [Inject]
-    public void Construct(Settings settings, LaunchBallSignal launchBallSignal,
-        AttachToPlayerSignal attachToPlayerSignal, ResetPlayerStateSignal resetPlayerStateSignal)
+    public void Construct(
+        Settings settings,
+        LaunchBallSignal launchBallSignal,
+        AttachToPlayerSignal attachToPlayerSignal,
+        ResetPlayerStateSignal resetPlayerStateSignal)
     {
         _settings = settings;
         launchBallSignal += LaunchBall;
@@ -26,6 +29,11 @@ public class BallController : MonoBehaviour
     {
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         transform.position = new Vector3(0, 0.5f, -18);
+    }
+
+    private void OnDestroy()
+    {
+        // unsubscribe
     }
 
     private void AttachToPlayer(bool needToAttach)
