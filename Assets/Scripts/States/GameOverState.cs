@@ -16,15 +16,11 @@ namespace States
         private EndGameResult _gameResult;
 
         private bool _isFirstFrame = true;
-        private readonly SaveResultToScoreboardSignal _saveResultToScoreboardSignal;
-        private readonly PlayerLosesSignal _playerLosesSignal;
-        private readonly PlayerWinsSignal _playerWinsSignal;
+        private readonly GameEndedSignal _gameEndedSignal;
 
-        public GameOverState(SaveResultToScoreboardSignal saveResultToScoreboardSignal1, PlayerLosesSignal playerLosesSignal, PlayerWinsSignal playerWinsSignal)
+        public GameOverState(GameEndedSignal gameEndedSignal1)
         {
-            _saveResultToScoreboardSignal = saveResultToScoreboardSignal1;
-            _playerLosesSignal = playerLosesSignal;
-            _playerWinsSignal = playerWinsSignal;
+            _gameEndedSignal = gameEndedSignal1;
         }
 
         public void SetContext(IGameContext context)
@@ -41,23 +37,7 @@ namespace States
         {
             if (_isFirstFrame)
             {
-                _saveResultToScoreboardSignal.Fire();
-                switch (_gameResult)
-                {
-                    case EndGameResult.Win:
-                    {
-                        _playerWinsSignal.Fire();
-                        break;
-                    }
-                    case EndGameResult.Lose:
-                    {
-                        _playerLosesSignal.Fire();
-                        break;
-                    }
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-
+                _gameEndedSignal.Fire(_gameResult);
                 _isFirstFrame = false;
             }
         }

@@ -36,6 +36,11 @@ public class BallController : MonoBehaviour
         // unsubscribe
     }
 
+    private void OnCollisionEnter(Collision other)
+    {
+        GetComponent<AudioSource>().Play();
+    }
+
     private void AttachToPlayer(bool needToAttach)
     {
         transform.SetParent(needToAttach ? PlayerTransform : null);

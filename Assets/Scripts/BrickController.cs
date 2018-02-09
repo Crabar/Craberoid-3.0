@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Signals;
 using UnityEngine;
 using Zenject;
@@ -34,10 +35,12 @@ public class BrickController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+
         _currentHp--;
 
         if (_currentHp == 0)
         {
+            AudioSource.PlayClipAtPoint(_settings.BreakSound, new Vector3(0, 10, 0));
             Destroy(gameObject);
             _giveScorepointsSignal.Fire(_settings.GainedScore);
         }
@@ -57,5 +60,6 @@ public class BrickController : MonoBehaviour
         public GameObject BrickPrefab;
         public Material[] Materials;
         public int GainedScore = 10;
+        public AudioClip BreakSound;
     }
 }

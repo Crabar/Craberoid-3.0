@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\ScoreboardUIController.cs" />
     <Compile Include="Assets\Scripts\ScoreTextController.cs" />
     <Compile Include="Assets\Scripts\Signals\AttachToPlayerSignal.cs" />
+    <Compile Include="Assets\Scripts\Signals\FloorTouchedSignal.cs" />
     <Compile Include="Assets\Scripts\Signals\GameEndedSignal.cs" />
     <Compile Include="Assets\Scripts\Signals\GameStateChangedSignal.cs" />
     <Compile Include="Assets\Scripts\Signals\GiveScorepointsSignal.cs" />
@@ -77,10 +78,7 @@
     <Compile Include="Assets\Scripts\Signals\LevelCompletedSignal.cs" />
     <Compile Include="Assets\Scripts\Signals\MovePlayerSignal.cs" />
     <Compile Include="Assets\Scripts\Signals\MovePlayerToPositionSignal.cs" />
-    <Compile Include="Assets\Scripts\Signals\PlayerLosesSignal.cs" />
-    <Compile Include="Assets\Scripts\Signals\PlayerWinsSignal.cs" />
     <Compile Include="Assets\Scripts\Signals\ResetPlayerStateSignal.cs" />
-    <Compile Include="Assets\Scripts\Signals\SaveResultToScoreboardSignal.cs" />
     <Compile Include="Assets\Scripts\States\GameOverState.cs" />
     <Compile Include="Assets\Scripts\States\IGameContext.cs" />
     <Compile Include="Assets\Scripts\States\IGameState.cs" />

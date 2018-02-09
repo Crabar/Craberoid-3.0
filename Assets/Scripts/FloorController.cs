@@ -7,16 +7,16 @@ using Zenject;
 
 public class FloorController : MonoBehaviour
 {
-    private GameEndedSignal _gameEndedSignal;
+    private FloorTouchedSignal _floorTouchedSignal;
 
     [Inject]
-    public void Construct(GameEndedSignal gameEndedSignal)
+    public void Construct(FloorTouchedSignal floorTouchedSignal)
     {
-        _gameEndedSignal = gameEndedSignal;
+        _floorTouchedSignal = floorTouchedSignal;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        _gameEndedSignal.Fire();
+        _floorTouchedSignal.Fire();
     }
 }

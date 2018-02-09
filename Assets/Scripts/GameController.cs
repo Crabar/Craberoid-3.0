@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Signals;
 using States;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 public class GameController : ITickable, IFixedTickable, IGameContext, IInitializable
@@ -30,10 +32,8 @@ public class GameController : ITickable, IFixedTickable, IGameContext, IInitiali
     public GameController(
         GameStateChangedSignal gameStateChangedSignal,
         StateFactory stateFactory,
-        PlayerWinsSignal playerWinsSignal,
-        PlayerLosesSignal playerLosesSignal,
         GiveScorepointsSignal giveScorepointsSignal,
-        SaveResultToScoreboardSignal saveResultToScoreboardSignal,
+        GameEndedSignal gameEndedSignal,
         ScoreTextController scoreText,
         EndGameTextController endGameText,
         ScoreboardDataController scoreboardDataController)
@@ -44,33 +44,35 @@ public class GameController : ITickable, IFixedTickable, IGameContext, IInitiali
         _scoreText = scoreText;
         _scoreboardDataController = scoreboardDataController;
 
-        playerWinsSignal += OnPlayerWins;
-        playerLosesSignal += OnPlayerLoses;
         giveScorepointsSignal += OnGainedScorepoints;
-        saveResultToScoreboardSignal += OnSaveGameResult;
+        gameEndedSignal += OnGameEnded;
     }
 
-    private void OnSaveGameResult()
+    private async void OnGameEnded(EndGameResult endGameResult)
     {
-        _scoreboardDataController.SaveResultToScoreboard(new GameResultDto { Score = _score, Timestamp = DateTime.Now });
-    }
+        _scoreboardDataController.SaveResultToScoreboard(new GameResultDto {Score = _score, Timestamp = DateTime.Now});
+        switch (endGameResult)
+        {
+            case EndGameResult.Win:
+                await _endGameText.ShowWin(_score);
+                break;
+            case EndGameResult.Lose:
+                await _endGameText.ShowLose(_score);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(endGameResult), endGameResult, null);
+        }
 
-    private async void OnPlayerLoses()
-    {
-        await _endGameText.ShowLose(_score);
         _scoreboardDataController.ShowScoreboard();
+        await Task.Delay(5000);
+        SceneManager.LoadScene("Menu");
     }
+
 
     private void OnGainedScorepoints(int scorepoints)
     {
         _score += scorepoints;
         _scoreText.UpdateScoreText(_score);
-    }
-
-    private async void OnPlayerWins()
-    {
-        await _endGameText.ShowWin(_score);
-        _scoreboardDataController.ShowScoreboard();
     }
 
     public void Tick()

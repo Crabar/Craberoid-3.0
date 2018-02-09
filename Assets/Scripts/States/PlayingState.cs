@@ -16,7 +16,7 @@ namespace States
 
         public PlayingState(
             StateFactory stateFactory,
-            GameEndedSignal gameEndedSignal,
+            FloorTouchedSignal floorTouchedSignal,
             AttachToPlayerSignal attachToPlayerSignal,
             LevelCompletedSignal levelCompletedSignal,
             ResetPlayerStateSignal resetPlayerStateSignal,
@@ -27,7 +27,7 @@ namespace States
             _resetPlayerStateSignal = resetPlayerStateSignal;
             _giveScorepointsSignal = giveScorepointsSignal;
             _movePlayerToPositionSignal = movePlayerToPositionSignal;
-            gameEndedSignal += OnGameEnded;
+            floorTouchedSignal += OnGameEnded;
             levelCompletedSignal += OnLevelCompleted;
             attachToPlayerSignal.Fire(false);
         }
