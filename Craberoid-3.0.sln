@@ -1,11 +1,12 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Craberoid-3.0", "Assembly-CSharp-firstpass.csproj", "{D00E32F3-AE51-DCB6-72DA-9488261FBA1F}"
+Project("{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1}") = "Assembly-CSharp-firstpass", "Assembly-CSharp-firstpass.csproj", "{D00E32F3-AE51-DCB6-72DA-9488261FBA1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Craberoid-3.0", "Assembly-CSharp.csproj", "{28980190-0F6E-6AFD-E110-307BC213881A}"
+Project("{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{28980190-0F6E-6AFD-E110-307BC213881A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Craberoid-3.0", "Assembly-CSharp-Editor-firstpass.csproj", "{4A35A8F0-4F46-875D-7266-586353C226E3}"
+Project("{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1}") = "Assembly-CSharp-Editor-firstpass", "Assembly-CSharp-Editor-firstpass.csproj", "{4A35A8F0-4F46-875D-7266-586353C226E3}"
+EndProject
+Project("{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{1AFDBDA9-27A9-1DCD-CECD-A8A05B34130D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +26,10 @@ Global
 		{4A35A8F0-4F46-875D-7266-586353C226E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A35A8F0-4F46-875D-7266-586353C226E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A35A8F0-4F46-875D-7266-586353C226E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AFDBDA9-27A9-1DCD-CECD-A8A05B34130D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AFDBDA9-27A9-1DCD-CECD-A8A05B34130D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AFDBDA9-27A9-1DCD-CECD-A8A05B34130D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AFDBDA9-27A9-1DCD-CECD-A8A05B34130D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

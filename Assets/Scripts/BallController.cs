@@ -12,6 +12,10 @@ public class BallController : MonoBehaviour
 
     [Inject(Id = "PlayerTransform")] public Transform PlayerTransform;
 
+    private LaunchBallSignal _launchBallSignal;
+    private AttachToPlayerSignal _attachToPlayerSignal;
+    private ResetPlayerStateSignal _resetPlayerStateSignal;
+
     [Inject]
     public void Construct(
         Settings settings,
@@ -20,9 +24,13 @@ public class BallController : MonoBehaviour
         ResetPlayerStateSignal resetPlayerStateSignal)
     {
         _settings = settings;
-        launchBallSignal += LaunchBall;
-        attachToPlayerSignal += AttachToPlayer;
-        resetPlayerStateSignal += OnReset;
+        _launchBallSignal = launchBallSignal;
+        _attachToPlayerSignal = attachToPlayerSignal;
+        _resetPlayerStateSignal = resetPlayerStateSignal;
+        
+        _launchBallSignal += LaunchBall;
+        _attachToPlayerSignal += AttachToPlayer;
+        _resetPlayerStateSignal += OnReset;
     }
 
     private void OnReset()
@@ -33,12 +41,24 @@ public class BallController : MonoBehaviour
 
     private void OnDestroy()
     {
-        // unsubscribe
+        _launchBallSignal -= LaunchBall;
+        _attachToPlayerSignal -= AttachToPlayer;
+        _resetPlayerStateSignal -= OnReset;
     }
 
     private void OnCollisionEnter(Collision other)
     {
         GetComponent<AudioSource>().Play();
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        var rb = GetComponent<Rigidbody>();
+        var ballAngle = Math.Abs(Vector3.Angle(rb.velocity, new Vector3(1, 0, 0)));
+        if (ballAngle < 2 || 180 - ballAngle < 2)
+        {
+            rb.velocity = Quaternion.Euler(0, 5, 0) * rb.velocity;
+        }
     }
 
     private void AttachToPlayer(bool needToAttach)
