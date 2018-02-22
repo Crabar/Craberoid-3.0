@@ -11,6 +11,21 @@ public class PlayerController : MonoBehaviour
     private MovePlayerToPositionSignal _movePlayerToPositionSignal;
     private ResetPlayerStateSignal _resetPlayerStateSignal;
 
+    private Rigidbody _rb;
+
+    private Rigidbody Rb
+    {
+        get
+        {
+            if (_rb == null)
+            {
+                _rb = GetComponent<Rigidbody>();
+            }
+
+            return _rb;
+        }
+    }
+
     [Inject]
     public void Construct(
         Settings settings,
@@ -30,7 +45,8 @@ public class PlayerController : MonoBehaviour
     private void MovePlayerToPosition(float targetPosition)
     {
         var halfWidth = GetComponent<MeshCollider>().bounds.extents.x;
-        transform.position = new Vector3(Mathf.Clamp(targetPosition, -19.5f + halfWidth, 19.5f - halfWidth), transform.position.y, transform.position.z);
+        transform.position = new Vector3(Mathf.Clamp(targetPosition, -19.5f + halfWidth, 19.5f - halfWidth),
+            transform.position.y, transform.position.z);
     }
 
     private void OnDestroy()
@@ -41,14 +57,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnReset()
     {
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        Rb.velocity = Vector3.zero;
         transform.position = new Vector3(0, 2, -19);
     }
 
     private void MovePlayer(float horizontalOffset)
     {
-        var rb = GetComponent<Rigidbody>();
-        rb.velocity = new Vector3(horizontalOffset * _settings.playerSpeed, 0, 0);
+        Rb.velocity = new Vector3(horizontalOffset * _settings.playerSpeed, 0, 0);
     }
 
     [Serializable]

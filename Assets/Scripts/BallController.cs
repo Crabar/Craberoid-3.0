@@ -15,6 +15,21 @@ public class BallController : MonoBehaviour
     private LaunchBallSignal _launchBallSignal;
     private AttachToPlayerSignal _attachToPlayerSignal;
     private ResetPlayerStateSignal _resetPlayerStateSignal;
+    
+    private Rigidbody _rb;
+
+    private Rigidbody Rb
+    {
+        get
+        {
+            if (_rb == null)
+            {
+                _rb = GetComponent<Rigidbody>();
+            }
+
+            return _rb;
+        }
+    } 
 
     [Inject]
     public void Construct(
@@ -30,12 +45,12 @@ public class BallController : MonoBehaviour
         
         _launchBallSignal += LaunchBall;
         _attachToPlayerSignal += AttachToPlayer;
-        _resetPlayerStateSignal += OnReset;
+        _resetPlayerStateSignal += OnResetState;
     }
 
-    private void OnReset()
+    private void OnResetState()
     {
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        Rb.velocity = Vector3.zero;
         transform.position = new Vector3(0, 0.5f, -18);
     }
 
@@ -43,8 +58,9 @@ public class BallController : MonoBehaviour
     {
         _launchBallSignal -= LaunchBall;
         _attachToPlayerSignal -= AttachToPlayer;
-        _resetPlayerStateSignal -= OnReset;
+        _resetPlayerStateSignal -= OnResetState;
     }
+    
 
     private void OnCollisionEnter(Collision other)
     {
@@ -53,11 +69,10 @@ public class BallController : MonoBehaviour
 
     private void OnCollisionExit(Collision other)
     {
-        var rb = GetComponent<Rigidbody>();
-        var ballAngle = Math.Abs(Vector3.Angle(rb.velocity, new Vector3(1, 0, 0)));
+        var ballAngle = Math.Abs(Vector3.Angle(Rb.velocity, Vector3.right));
         if (ballAngle < 2 || 180 - ballAngle < 2)
         {
-            rb.velocity = Quaternion.Euler(0, 5, 0) * rb.velocity;
+            Rb.velocity = Quaternion.Euler(0, 5, 0) * Rb.velocity;
         }
     }
 
@@ -69,7 +84,7 @@ public class BallController : MonoBehaviour
     private void LaunchBall(Vector3 velocity)
     {
         var newBallSpeed = velocity.normalized * _settings.ballSpeed;
-        GetComponent<Rigidbody>().velocity = newBallSpeed;
+        Rb.velocity = newBallSpeed;
     }
 
     [Serializable]
@@ -77,4 +92,6 @@ public class BallController : MonoBehaviour
     {
         public int ballSpeed = 10;
     }
+
+
 }
