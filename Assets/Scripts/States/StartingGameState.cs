@@ -53,9 +53,8 @@ namespace States
 
         public void Tick()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetMouseButtonDown(0))
             {
-//                _launchBallSignal.Fire(new Vector3(0, 0, 1));
                 _launchBallSignal.Fire(new Vector3(UnityEngine.Random.Range(-20, 20), 0, UnityEngine.Random.Range(5, 20)));
                 _gameContext.CurrentState = _stateFactory.CreatePlayingState(_gameContext);
             }

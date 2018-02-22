@@ -41,6 +41,7 @@ public class BrickController : MonoBehaviour
         if (_currentHp == 0)
         {
             AudioSource.PlayClipAtPoint(_settings.BreakSound, new Vector3(0, 10, 0));
+            Instantiate(_settings.Explosion, transform.position, transform.rotation);
             Destroy(gameObject);
             _giveScorepointsSignal.Fire(_settings.GainedScore);
         }
@@ -61,5 +62,6 @@ public class BrickController : MonoBehaviour
         public Material[] Materials;
         public int GainedScore = 10;
         public AudioClip BreakSound;
+        public GameObject Explosion;
     }
 }

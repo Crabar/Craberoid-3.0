@@ -180,6 +180,7 @@ MonoBehaviour:
     Materials: []
     GainedScore: 10
     BreakSound: {fileID: 0}
+    Explosion: {fileID: 0}
 --- !u!1 &414849360
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,7 +958,7 @@ GameObject:
   - component: {fileID: 970003653}
   - component: {fileID: 970003652}
   - component: {fileID: 970003651}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1071,7 +1072,7 @@ Prefab:
     - target: {fileID: 224630322848181064, guid: 1d8904359b8e33748a8ff9649ef257ae,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 83.71997
+      value: 83.72
       objectReference: {fileID: 0}
     - target: {fileID: 224630322848181064, guid: 1d8904359b8e33748a8ff9649ef257ae,
         type: 2}
@@ -1081,7 +1082,7 @@ Prefab:
     - target: {fileID: 224630322848181064, guid: 1d8904359b8e33748a8ff9649ef257ae,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 147.43994
+      value: 147.44
       objectReference: {fileID: 0}
     - target: {fileID: 224630322848181064, guid: 1d8904359b8e33748a8ff9649ef257ae,
         type: 2}
@@ -1563,7 +1564,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &1640230103
 AudioSource:
   m_ObjectHideFlags: 0
