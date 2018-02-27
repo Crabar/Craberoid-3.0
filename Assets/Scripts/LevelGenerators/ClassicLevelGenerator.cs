@@ -25,17 +25,18 @@ namespace LevelGenerators
             const int zStep = 1;
             const int xStep = 2;
 
-            const float gap = 0.2f;
+            const float gap = 0.4f;
 
             for (var i = 0; i < rows; i++)
             {
-                var currentX = -(columns - 1) * (xStep + gap) / 2;
+                var rowOffset = i % 2 == 0 ? -1 : 1;
+                var currentX = -(columns - 1) * (xStep + gap) / 2 + rowOffset;
 
                 for (var j = 0; j < columns; j++)
                 {
                     var brick = _brickFactory.Create();
                     bricks.Add(brick);
-                    brick.transform.position = new Vector3(currentX + gap * j, 0, currentZ + gap * i);
+                    brick.transform.position = new Vector3(currentX + gap * j * 2, 0, currentZ + gap * i);
                     currentX += xStep;
                 }
 
