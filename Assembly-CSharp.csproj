@@ -56,6 +56,7 @@
     <Compile Include="Assets\Scripts\EndGameTextController.cs" />
     <Compile Include="Assets\Scripts\FloorController.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
+    <Compile Include="Assets\Scripts\InputController.cs" />
     <Compile Include="Assets\Scripts\Installers\GameSettingsInstaller.cs" />
     <Compile Include="Assets\Scripts\Installers\MainMonoInstaller.cs" />
     <Compile Include="Assets\Scripts\LevelGenerators\ClassicLevelGenerator.cs" />
@@ -65,7 +66,6 @@
     <Compile Include="Assets\Scripts\LevelGenerators\LevelManager.cs" />
     <Compile Include="Assets\Scripts\LevelGenerators\StarLevelGenerator.cs" />
     <Compile Include="Assets\Scripts\MenuController.cs" />
-    <Compile Include="Assets\Scripts\ParticleSystemAutoDestroy.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\ScoreboardDataController.cs" />
     <Compile Include="Assets\Scripts\ScoreboardUIController.cs" />
@@ -87,6 +87,8 @@
     <Compile Include="Assets\Scripts\States\StartingGameState.cs" />
     <Compile Include="Assets\Scripts\States\StateFactory.cs" />
     <Compile Include="Assets\Scripts\Utils\Extensions\AnimatorExtensions.cs" />
+    <Compile Include="Assets\Scripts\Utils\ParticleSystemAutoDestroy.cs" />
+    <Compile Include="Assets\Scripts\Utils\ReCalcCubeTexture.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
@@ -143,6 +145,7 @@
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\Plugins\Zenject\Version.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
+    <None Include="Assets\HighQualityBricks&amp;Walls\Shaders\wall-617961.shader" />
     <None Include="Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Media\Imported\Shaders\AddSmooth_Layer.shader" />
     <None Include="Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Media\Imported\Shaders\Add_Layer.shader" />
     <Reference Include="UnityEngine.UI">
@@ -155,7 +158,7 @@
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
+      <HintPath>C:\_PROGRAMMING\Unity\Craberoid-3.0\Library\resharper-unity-libs\nunit3.5.0\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Timeline">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll</HintPath>

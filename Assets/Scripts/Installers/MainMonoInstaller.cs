@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using LevelGenerators;
 using Signals;
 using States;
@@ -12,6 +13,7 @@ public class MainMonoInstaller : MonoInstaller<MainMonoInstaller>
     {
         Container.BindInterfacesAndSelfTo<GameController>().AsSingle();
         Container.BindInterfacesAndSelfTo<ScoreboardDataController>().AsSingle();
+        Container.BindInterfacesAndSelfTo<InputController>().AsSingle();
         // signals
         Container.DeclareSignal<LaunchBallSignal>();
         Container.DeclareSignal<GameStateChangedSignal>();

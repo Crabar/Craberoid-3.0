@@ -1,4 +1,5 @@
 using System;
+using DefaultNamespace;
 using Signals;
 using UnityEngine;
 using Zenject;
@@ -12,7 +13,8 @@ namespace States
         private IGameContext _gameContext;
         private readonly StateFactory _stateFactory;
         private readonly GiveScorepointsSignal _giveScorepointsSignal;
-        private readonly MovePlayerToPositionSignal _movePlayerToPositionSignal;
+
+        [Inject] public InputController InputController;
 
         public PlayingState(
             StateFactory stateFactory,
@@ -20,13 +22,11 @@ namespace States
             AttachToPlayerSignal attachToPlayerSignal,
             LevelCompletedSignal levelCompletedSignal,
             ResetPlayerStateSignal resetPlayerStateSignal,
-            GiveScorepointsSignal giveScorepointsSignal,
-            MovePlayerToPositionSignal movePlayerToPositionSignal)
+            GiveScorepointsSignal giveScorepointsSignal)
         {
             _stateFactory = stateFactory;
             _resetPlayerStateSignal = resetPlayerStateSignal;
             _giveScorepointsSignal = giveScorepointsSignal;
-            _movePlayerToPositionSignal = movePlayerToPositionSignal;
             floorTouchedSignal += OnGameEnded;
             levelCompletedSignal += OnLevelCompleted;
             attachToPlayerSignal.Fire(false);
@@ -56,8 +56,7 @@ namespace States
 
         public void FixedTick()
         {
-            var targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            _movePlayerToPositionSignal.Fire(targetPosition.x);
+            InputController.ProcessPlayerMovement();
         }
 
         public class Factory : Factory<PlayingState>
