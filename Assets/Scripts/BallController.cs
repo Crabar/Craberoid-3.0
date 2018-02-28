@@ -65,6 +65,7 @@ public class BallController : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         GetComponent<AudioSource>().Play();
+        Rb.velocity = Rb.velocity.normalized * _settings.ballSpeed;
     }
 
     private void OnCollisionExit(Collision other)
