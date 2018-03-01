@@ -51,7 +51,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\FillScreenBackground.cs" />
     <Compile Include="Assets\Scripts\BallController.cs" />
     <Compile Include="Assets\Scripts\BrickController.cs" />
     <Compile Include="Assets\Scripts\EndGameTextController.cs" />
@@ -88,6 +87,7 @@
     <Compile Include="Assets\Scripts\States\StartingGameState.cs" />
     <Compile Include="Assets\Scripts\States\StateFactory.cs" />
     <Compile Include="Assets\Scripts\Utils\Extensions\AnimatorExtensions.cs" />
+    <Compile Include="Assets\Scripts\Utils\FillScreenBackground.cs" />
     <Compile Include="Assets\Scripts\Utils\ParticleSystemAutoDestroy.cs" />
     <Compile Include="Assets\Scripts\Utils\ReCalcCubeTexture.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
