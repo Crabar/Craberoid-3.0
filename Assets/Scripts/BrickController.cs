@@ -39,7 +39,6 @@ public class BrickController : MonoBehaviour
 
         if (_currentHp == 0)
         {
-            AudioSource.PlayClipAtPoint(_settings.BreakSound, Camera.main.transform.position);
             Instantiate(_settings.Explosion, transform.position, transform.rotation);
             Destroy(gameObject);
             _giveScorepointsSignal.Fire(_settings.GainedScore);

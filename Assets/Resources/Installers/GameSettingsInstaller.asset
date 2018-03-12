@@ -19,8 +19,8 @@ MonoBehaviour:
     BrickPrefab: {fileID: 1072183195368714, guid: a63ca9809013349039a4327f58ccea56,
       type: 2}
     Materials:
-    - {fileID: 2100000, guid: 73384d3fc83e14f2ba1ac27d599047ce, type: 2}
-    - {fileID: 2100000, guid: a5ef497de21144ea5bb1874bd2609593, type: 2}
+    - {fileID: 2100000, guid: 38f3f637bf4ee2f4985854efd0523b78, type: 2}
+    - {fileID: 2100000, guid: e75eb513962b3d042b8333dba21f4451, type: 2}
     GainedScore: 10
     BreakSound: {fileID: 8300000, guid: b0a58e4c8ae3e9f4b9b60081bcf856eb, type: 3}
     Explosion: {fileID: 100004, guid: 2857e183f4cd3df4e9096e5b578bd32f, type: 2}
@@ -29,3 +29,10 @@ MonoBehaviour:
   Scoreboard:
     GameResultPrefab: {fileID: 1076844550758240, guid: 1d8904359b8e33748a8ff9649ef257ae,
       type: 2}
+  Sound:
+    MusicGroup: {fileID: 243665139546503946, guid: 5a08b651bf6df984d8de52c1e67de3a4,
+      type: 2}
+    BaseMusicVolume: 0.7
+    SFXGroup: {fileID: 243220740635657416, guid: 5a08b651bf6df984d8de52c1e67de3a4,
+      type: 2}
+    BaseSFXVolume: 0.7

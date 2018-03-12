@@ -1,4 +1,5 @@
 using LevelGenerators;
+using UI;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using Zenject;
@@ -11,6 +12,7 @@ public class GameSettingsInstaller : ScriptableObjectInstaller<GameSettingsInsta
     public BrickController.Settings Brick;
     public LevelManager.Settings LevelManager;
     public ScoreboardUIController.Settings Scoreboard;
+    public SettingsController.Settings Sound;
 
     public override void InstallBindings()
     {
@@ -19,5 +21,6 @@ public class GameSettingsInstaller : ScriptableObjectInstaller<GameSettingsInsta
         Container.BindInstance(Brick);
         Container.BindInstance(LevelManager);
         Container.BindInstance(Scoreboard);
+        Container.BindInstance(Sound);
     }
 }
