@@ -1,5 +1,4 @@
 using System;
-using DefaultNamespace;
 using Signals;
 using UnityEngine;
 using Zenject;

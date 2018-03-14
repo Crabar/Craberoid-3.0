@@ -58,7 +58,7 @@ public class BallController : MonoBehaviour
     {
         _launchBallSignal -= LaunchBall;
         _attachToPlayerSignal -= AttachToPlayer;
-//        _resetPlayerStateSignal -= OnResetState;
+        _resetPlayerStateSignal -= OnResetState;
     }
     
 

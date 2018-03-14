@@ -1,4 +1,3 @@
-using DefaultNamespace;
 using LevelGenerators;
 using Signals;
 using States;
@@ -37,7 +36,7 @@ public class MainMonoInstaller : MonoInstaller<MainMonoInstaller>
         Container.BindFactory<BrickController, BrickController.Factory>()
                  .FromComponentInNewPrefab(BrickSettings.BrickPrefab)
                  .WithGameObjectName("Brick");
-        Container.Bind<LevelManager>().AsSingle();
+        Container.BindInterfacesAndSelfTo<LevelManager>().AsSingle();
         Container.Bind<LevelGeneratorFactory>().AsSingle();
     }
 }

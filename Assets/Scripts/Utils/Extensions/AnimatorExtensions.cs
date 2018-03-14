@@ -8,6 +8,11 @@ namespace Utils.Extensions
     {
         public static IEnumerator PlayAsync(this Animator animator, string stateName)
         {
+            if (animator == null)
+            {
+                yield break;
+            }
+            
             const int animLayer = 0;
             animator.Play(stateName);
             animator.Update(0);

@@ -37,7 +37,7 @@ namespace UI
             if (_settings?.MusicGroup != null)
             {
                 _settings.BaseMusicVolume = value;
-                _settings.MusicGroup.audioMixer.SetFloat("MusicVolume", value * 75 - 60);
+                _settings.MusicGroup.audioMixer.SetFloat("MusicVolume", value * 80 - 80);
             }
         }
 
@@ -46,7 +46,7 @@ namespace UI
             if (_settings?.SFXGroup != null)
             {
                 _settings.BaseSFXVolume = value;
-                _settings.SFXGroup.audioMixer.SetFloat("SFXVolume", value * 75 - 60);
+                _settings.SFXGroup.audioMixer.SetFloat("SFXVolume", value * 80 - 80);
             }
         }
 

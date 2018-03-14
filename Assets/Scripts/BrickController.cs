@@ -14,7 +14,7 @@ public class BrickController : MonoBehaviour
     private Settings _settings;
     private GiveScorepointsSignal _giveScorepointsSignal;
 
-    public event Action<BrickController> BrickDestoyed;
+    public event Action<BrickController> BrickDestroyed;
 
     [Inject]
     public void Construct(Settings settings, GiveScorepointsSignal giveScorepointsSignal)
@@ -30,7 +30,7 @@ public class BrickController : MonoBehaviour
 
     private void OnDestroy()
     {
-        BrickDestoyed?.Invoke(this);
+        BrickDestroyed?.Invoke(this);
     }
 
     private void OnCollisionEnter(Collision collision)

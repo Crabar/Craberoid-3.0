@@ -1,5 +1,4 @@
 ﻿using System;
-using DefaultNamespace;
 using LevelGenerators;
 using Signals;
 using UnityEngine;

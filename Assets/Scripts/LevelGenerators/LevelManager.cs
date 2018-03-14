@@ -5,7 +5,7 @@ using Signals;
 
 namespace LevelGenerators
 {
-    public class LevelManager
+    public class LevelManager: IDisposable
     {
         private readonly Queue<ILevelGenerator> _levelGenerators;
         private ILevelGenerator _currentLevel;
@@ -34,7 +34,7 @@ namespace LevelGenerators
 
             foreach (var brick in _bricksOnLevel)
             {
-                brick.BrickDestoyed += OnBrickDestroy;
+                brick.BrickDestroyed += OnBrickDestroy;
             }
 
             return true;
@@ -46,6 +46,14 @@ namespace LevelGenerators
             if (_bricksOnLevel.Count == 0)
             {
                 _levelCompletedSignal.Fire();
+            }
+        }
+        
+        public void Dispose()
+        {
+            foreach (var brick in _bricksOnLevel)
+            {
+                brick.BrickDestroyed -= OnBrickDestroy;
             }
         }
 

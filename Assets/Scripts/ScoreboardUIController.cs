@@ -21,7 +21,7 @@ public class ScoreboardUIController : MonoBehaviour
     {
         var gameResultText = _diContainer.InstantiatePrefab(_settings.GameResultPrefab);
         gameResultText.transform.SetParent(transform, false);
-        gameResultText.GetComponent<TextMeshProUGUI>().text = $"{gameResultDto.Timestamp.Hour}:{gameResultDto.Timestamp.Minute}    {gameResultDto.Score}";
+        gameResultText.GetComponent<TextMeshProUGUI>().text = $"{gameResultDto.Timestamp:HH:mm}    {gameResultDto.Score:D4}";
     }
 
     public void ShowPanel()

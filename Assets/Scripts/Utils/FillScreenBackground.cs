@@ -8,7 +8,7 @@ public class FillScreenBackground : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-		float maxScale = 0f;
+		float maxScale;
 		
 		if (Camera.main.orthographic)
 		{

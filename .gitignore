@@ -5,6 +5,7 @@ Temp/
 Library/
 PC_BUILD_Data/
 MAC_BUILD.app/
+IOS_BUILD/
 *.apk
 
 # ===================================== #

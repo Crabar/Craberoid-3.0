@@ -1,5 +1,7 @@
 ﻿using System;
 using Signals;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace States
@@ -17,6 +19,8 @@ namespace States
 
         private bool _isFirstFrame = true;
         private readonly GameEndedSignal _gameEndedSignal;
+        
+        [Inject] public InputController InputController;
 
         public GameOverState(GameEndedSignal gameEndedSignal1)
         {
@@ -37,6 +41,7 @@ namespace States
         {
             if (_isFirstFrame)
             {
+                InputController.OnDoubleTap += () => SceneManager.LoadScene("Menu");
                 _gameEndedSignal.Fire(_gameResult);
                 _isFirstFrame = false;
             }
