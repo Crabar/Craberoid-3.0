@@ -48,7 +48,7 @@ public class ScoreboardDataController
                     resAdded = true;
                 }
 
-                if (result.Score == curResultNode.Value.Score)
+                if (result.Score <= curResultNode.Value.Score)
                 {
                     _scoreboard.AddAfter(curResultNode, result);
                     resAdded = true;

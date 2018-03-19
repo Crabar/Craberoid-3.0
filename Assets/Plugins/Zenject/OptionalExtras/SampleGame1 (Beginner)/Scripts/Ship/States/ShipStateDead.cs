@@ -41,7 +41,7 @@ namespace Zenject.Asteroids
         public override void Start()
         {
             _ship.MeshRenderer.enabled = false;
-            _ship.ParticleEmitter.emit = false;
+            _ship.ParticleEmitter.gameObject.SetActive(false);
 
             _explosion = _explosionFactory.Create();
             _explosion.transform.position = _ship.Position;
@@ -63,7 +63,7 @@ namespace Zenject.Asteroids
         public override void Dispose()
         {
             _ship.MeshRenderer.enabled = true;
-            _ship.ParticleEmitter.emit = true;
+            _ship.ParticleEmitter.gameObject.SetActive(true);
 
             GameObject.Destroy(_explosion);
             GameObject.Destroy(_shipBroken);

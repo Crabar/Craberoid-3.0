@@ -48,16 +48,20 @@ namespace States
             {
                 _gameContext.CurrentState = _stateFactory.CreateGameOverState(_gameContext, EndGameResult.Win);
             }
+
+            InputController.OnDoubleTap += LaunchBall;
         }
 
         public void Tick()
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                _launchBallSignal.Fire(new Vector3(UnityEngine.Random.Range(-20, 20), 0,
-                    UnityEngine.Random.Range(5, 20)));
-                _gameContext.CurrentState = _stateFactory.CreatePlayingState(_gameContext);
-            }
+            //
+        }
+
+        private void LaunchBall()
+        {
+            _launchBallSignal.Fire(new Vector3(UnityEngine.Random.Range(-20, 20), 0,
+                UnityEngine.Random.Range(5, 20)));
+            _gameContext.CurrentState = _stateFactory.CreatePlayingState(_gameContext);
         }
 
         public void FixedTick()

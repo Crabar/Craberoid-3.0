@@ -10,7 +10,7 @@ public class MainMonoInstaller : MonoInstaller<MainMonoInstaller>
 
     public override void InstallBindings()
     {
-        Container.BindInterfacesAndSelfTo<GameController>().AsSingle();
+        Container.BindInterfacesAndSelfTo<GameController>().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<ScoreboardDataController>().AsSingle();
         Container.BindInterfacesAndSelfTo<InputController>().AsSingle();
         // signals
