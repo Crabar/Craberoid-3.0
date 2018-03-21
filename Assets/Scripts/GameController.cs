@@ -50,7 +50,7 @@ public class GameController : ITickable, IFixedTickable, IGameContext, IInitiali
 
     private async void OnGameEnded(EndGameResult endGameResult)
     {
-        _scoreboardDataController.SaveResultToScoreboard(new GameResultDto {Score = _score, Timestamp = DateTime.Now});
+        _scoreboardDataController.SaveResultToScoreboard(new GameResultDto {Score = _score, Timestamp = DateTime.Now, IsHighlighted = true});
         switch (endGameResult)
         {
             case EndGameResult.Win:

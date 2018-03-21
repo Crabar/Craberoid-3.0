@@ -21,7 +21,9 @@ public class ScoreboardUIController : MonoBehaviour
     {
         var gameResultText = _diContainer.InstantiatePrefab(_settings.GameResultPrefab);
         gameResultText.transform.SetParent(transform, false);
-        gameResultText.GetComponent<TextMeshProUGUI>().text = $"{gameResultDto.Timestamp:HH:mm}    {gameResultDto.Score:D4}";
+        var textMesh = gameResultText.GetComponent<TextMeshProUGUI>();
+        textMesh.color = gameResultDto.IsHighlighted ? new Color32(100, 255, 100, 255) : new Color32(255, 255, 255, 255);
+        textMesh.text = $"{gameResultDto.Timestamp:HH:mm}    {gameResultDto.Score:D4}";
     }
 
     public void ShowPanel()

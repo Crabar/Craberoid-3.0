@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using ModestTree;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking.Types;
 
 public class ScoreboardDataController
 {
-    private LinkedList<GameResultDto> _scoreboard;
+    private List<GameResultDto> _scoreboard;
     private readonly string _path;
     private readonly ScoreboardUIController _scoreboardUiController;
 
@@ -32,39 +34,12 @@ public class ScoreboardDataController
 
     public void SaveResultToScoreboard(GameResultDto result)
     {
-        if (_scoreboard.Count == 0)
+        _scoreboard.Add(result);
+        _scoreboard.Sort((dto, resultDto) => dto.Score > resultDto.Score ? -1 : 1);
+
+        if (_scoreboard.Count > 5)
         {
-            _scoreboard.AddFirst(result);
-        }
-        else
-        {
-            var curResultNode = _scoreboard.First;
-            var resAdded = false;
-            while (curResultNode != null)
-            {
-                if (result.Score > curResultNode.Value.Score)
-                {
-                    _scoreboard.AddBefore(curResultNode, result);
-                    resAdded = true;
-                }
-
-                if (result.Score <= curResultNode.Value.Score)
-                {
-                    _scoreboard.AddAfter(curResultNode, result);
-                    resAdded = true;
-                }
-
-                if (resAdded)
-                {
-                    if (_scoreboard.Count > 5)
-                    {
-                        _scoreboard.RemoveLast();
-                    }
-                    break;
-                }
-
-                curResultNode = curResultNode.Next;
-            }
+            _scoreboard = _scoreboard.GetRange(0, 5);
         }
 
         var formatter = new BinaryFormatter();
@@ -81,13 +56,26 @@ public class ScoreboardDataController
             var fileStream = new FileStream(_path, FileMode.Open);
             var obj = formatter.Deserialize(fileStream);
             fileStream.Close();
-            _scoreboard = obj as LinkedList<GameResultDto>;
+            if (obj is LinkedList<GameResultDto>)
+            {
+                _scoreboard = (obj as LinkedList<GameResultDto>).ToList();
+            }
+            else if (obj is List<GameResultDto>)
+            {
+                _scoreboard = obj as List<GameResultDto>;
+            }  
         }
 
         if (_scoreboard == null)
         {
-            _scoreboard = new LinkedList<GameResultDto>();
+            _scoreboard = new List<GameResultDto>();
         }
+
+        _scoreboard.Select(r =>
+        {
+            r.IsHighlighted = false;
+            return r;
+        }).ToList();
     }
 }
 
@@ -96,4 +84,5 @@ public class GameResultDto
 {
     public int Score;
     public DateTime Timestamp;
+    public bool IsHighlighted;
 }
