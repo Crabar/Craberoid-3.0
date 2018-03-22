@@ -25,7 +25,7 @@ MonoBehaviour:
     BreakSound: {fileID: 8300000, guid: b0a58e4c8ae3e9f4b9b60081bcf856eb, type: 3}
     Explosion: {fileID: 100004, guid: 2857e183f4cd3df4e9096e5b578bd32f, type: 2}
   LevelManager:
-    Levels: 0000000001000000
+    Levels: 000000000100000002000000
   Scoreboard:
     GameResultPrefab: {fileID: 1076844550758240, guid: 1d8904359b8e33748a8ff9649ef257ae,
       type: 2}

@@ -3,6 +3,7 @@
     public enum LevelGenerator
     {
         Classic,
-        Star
+        Star,
+        Crazy
     }
 }

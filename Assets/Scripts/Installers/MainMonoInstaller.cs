@@ -23,7 +23,7 @@ public class MainMonoInstaller : MonoInstaller<MainMonoInstaller>
         Container.DeclareSignal<AttachToPlayerSignal>();
         Container.DeclareSignal<LevelCompletedSignal>();
         Container.DeclareSignal<ResetPlayerStateSignal>();
-        Container.DeclareSignal<GameEndedSignal>();
+        Container.DeclareSignal<GameEndedSignal>();    
         // factories
         Container.Bind<StateFactory>().AsSingle();
         Container.BindFactory<StartingGameState, StartingGameState.Factory>();
@@ -32,6 +32,7 @@ public class MainMonoInstaller : MonoInstaller<MainMonoInstaller>
 
         Container.BindFactory<ClassicLevelGenerator, ClassicLevelGenerator.Factory>();
         Container.BindFactory<StarLevelGenerator, StarLevelGenerator.Factory>();
+        Container.BindFactory<CrazyLevelGenerator, CrazyLevelGenerator.Factory>();
         //
         Container.BindFactory<BrickController, BrickController.Factory>()
                  .FromComponentInNewPrefab(BrickSettings.BrickPrefab)

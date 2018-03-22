@@ -33,7 +33,7 @@ public class BrickController : MonoBehaviour
         BrickDestroyed?.Invoke(this);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void DecreaseHp()
     {
         _currentHp--;
 
@@ -47,6 +47,11 @@ public class BrickController : MonoBehaviour
         {
             GetComponent<Renderer>().material = _hpToMaterials[_currentHp];
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        DecreaseHp();
     }
 
     public class Factory : Factory<BrickController>

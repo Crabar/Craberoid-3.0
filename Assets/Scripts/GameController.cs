@@ -65,9 +65,11 @@ public class GameController : ITickable, IFixedTickable, IGameContext, IInitiali
 
         _scoreboardDataController.ShowScoreboard();
         await Task.Delay(5000);
-        SceneManager.LoadScene("Menu");
+        if (_currentState is GameOverState)
+        {
+            SceneManager.LoadScene("Menu");
+        }
     }
-
 
     private void OnGainedScorepoints(int scorepoints)
     {

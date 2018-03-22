@@ -3,6 +3,7 @@ using Signals;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
+using Object = UnityEngine.Object;
 
 namespace States
 {
@@ -36,12 +37,25 @@ namespace States
         {
             _gameResult = endGameResult;
         }
+        
+        private void StopAllAnimation() 
+        {
+            var allAnims = Object.FindObjectsOfType<Animation>();
+            foreach(var anim in allAnims) 
+            {
+                anim.Stop();
+            }
+        }
 
         public void Tick()
         {
             if (_isFirstFrame)
             {
-                InputController.OnDoubleTap += () => SceneManager.LoadScene("Menu");
+                InputController.OnDoubleTap += () =>
+                {
+                    StopAllAnimation();
+                    SceneManager.LoadScene("Menu");
+                };
                 _gameEndedSignal.Fire(_gameResult);
                 _isFirstFrame = false;
             }
